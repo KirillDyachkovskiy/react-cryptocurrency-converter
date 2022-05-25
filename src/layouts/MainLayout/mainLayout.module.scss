@@ -1,3 +1,7 @@
-.portfolio {
+.mainLayout {
   color: red;
+
+  &__main {
+    display: flex;
+  }
 }

@@ -1,0 +1,18 @@
+.input {
+  appearance: none;
+  border: 1px solid var(--input-border);
+  padding: 9px 14px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: var(--14px);
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid var(--input-placeholder);
+}
+
+.input::placeholder {
+  color: var(--input-placeholder);
+}

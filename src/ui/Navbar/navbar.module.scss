@@ -1,0 +1,16 @@
+@import 'src/styles/variables';
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__item {
+    cursor: pointer;
+    color: $navbar-item-color;
+
+    &_active {
+      color: $navbar-active-item-color;
+    }
+  }
+}
