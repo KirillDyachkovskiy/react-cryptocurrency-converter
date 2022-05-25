@@ -21,7 +21,7 @@
             }
         },
         "react": {
-            "version": "latest"
+            "version": "detect"
         }
     },
     "parser": "@typescript-eslint/parser",
@@ -31,7 +31,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 13,
+        "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
