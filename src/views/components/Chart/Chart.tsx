@@ -72,7 +72,7 @@ function Chart() {
 
   if (isFetching) {
     return (
-      <div className={`${s.chart} ${s.chart__preloader}`}>
+      <div className={s.chart}>
         <Preloader />
       </div>
     );
@@ -105,7 +105,11 @@ function Chart() {
     ],
   };
 
-  return <Line className={s.chart} options={options} data={line} />;
+  return (
+    <div className={s.chart}>
+      <Line options={options} data={line} />
+    </div>
+  );
 }
 
 export default Chart;

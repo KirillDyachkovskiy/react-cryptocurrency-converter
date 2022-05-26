@@ -4,6 +4,7 @@ import { useActions, useTitle } from '../../hooks';
 
 import { TCurrency } from '../../../data/types';
 
+import { ContentLayout } from '../../layouts';
 import { Chart, Daysbar, Switcher } from '../../components';
 
 import s from './converter.module.scss';
@@ -31,17 +32,13 @@ function Converter() {
   }, [bitcoin, ethereum, setData]);
 
   return (
-    <section className={s.converter}>
-      <header className={s.converter__header}>
-        <h2 className={s.converter__title}>Dashboard</h2>
-        <p className={s.converter__subtitle}>
-          World&apos;s best cryptocurrency exchange
-        </p>
-      </header>
-      <Switcher name='currencySwitcher' />
-      <Chart />
-      <Daysbar />
-    </section>
+    <ContentLayout title='Dashboard'>
+      <main className={s.converter}>
+        <Switcher name='currencySwitcher' />
+        <Chart />
+        <Daysbar />
+      </main>
+    </ContentLayout>
   );
 }
 

@@ -23,9 +23,9 @@ function MainLayout() {
         </a>
         <Navbar items={navbarItems} />
       </aside>
-      <main className={s.mainLayout__main}>
+      <div className={s.mainLayout__main}>
         <Outlet />
-      </main>
+      </div>
     </div>
   );
 }

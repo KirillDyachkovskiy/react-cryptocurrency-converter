@@ -4,18 +4,4 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-
-  &__header {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  &__title {
-    @include converter-title;
-  }
-
-  &__subtitle {
-    @include converter-subtitle;
-  }
 }
