@@ -7,10 +7,10 @@ import { TCurrency } from '../../../data/types';
 import { ContentLayout } from '../../layouts';
 import { Chart, Daysbar, Switcher } from '../../components';
 
-import s from './converter.module.scss';
+import s from './dashboard.module.scss';
 
-function Converter() {
-  useTitle('Converter');
+function Dashboard() {
+  useTitle('Dashboard');
 
   const { data: bitcoin } = useGetDataQuery({
     currency: 'usd' as TCurrency,
@@ -33,7 +33,7 @@ function Converter() {
 
   return (
     <ContentLayout title='Dashboard'>
-      <main className={s.converter}>
+      <main className={s.dashboard}>
         <Switcher name='currencySwitcher' />
         <Chart />
         <Daysbar />
@@ -42,4 +42,4 @@ function Converter() {
   );
 }
 
-export default Converter;
+export default Dashboard;

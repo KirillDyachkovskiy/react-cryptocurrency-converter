@@ -9,7 +9,7 @@ import { Navbar } from '../../ui';
 import s from './mainLayout.module.scss';
 
 const navbarItems = [
-  { path: '/', label: 'Converter', icon: <RiDashboardFill /> },
+  { path: '/', label: 'Dashboard', icon: <RiDashboardFill /> },
   { path: '/wallet', label: 'Wallet', icon: <IoIosWallet /> },
 ];
 

@@ -9,7 +9,7 @@ function Wallet() {
 
   return (
     <ContentLayout title='Wallet'>
-      <main className={s.converter}>Lol</main>
+      <main className={s.dashboard}>Lol</main>
     </ContentLayout>
   );
 }

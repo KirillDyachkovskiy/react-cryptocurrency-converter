@@ -26,14 +26,14 @@ $input-placeholder: rgb(150, 150, 150);
   color: #4C4C66;
 }
 
-@mixin converter-title() {
+@mixin dashboard-title() {
   font-weight: 700;
   font-size: 30px;
   color: $dark;
   opacity: 0.9;
 }
 
-@mixin converter-subtitle() {
+@mixin dashboard-subtitle() {
   font-weight: 400;
   font-size: 13px;
   color: $dark;

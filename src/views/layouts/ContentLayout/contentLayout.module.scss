@@ -9,10 +9,10 @@
   }
 
   &__title {
-    @include converter-title;
+    @include dashboard-title;
   }
 
   &__subtitle {
-    @include converter-subtitle;
+    @include dashboard-subtitle;
   }
 }
