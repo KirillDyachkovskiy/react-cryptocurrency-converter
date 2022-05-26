@@ -7,7 +7,7 @@ import s from './currency.module.scss';
 interface ICurrency {
   active?: boolean;
   image: string;
-  value: number;
+  price: number;
   symbol: string;
   dynamics: number;
 }
@@ -15,7 +15,7 @@ interface ICurrency {
 function Currency({
   active = false,
   image,
-  value,
+  price,
   symbol,
   dynamics,
 }: ICurrency) {
@@ -25,12 +25,19 @@ function Currency({
         <Image src={image} alt={symbol} />
       </div>
       <div className={s.currency__info}>
-        <p className={s.currency__value}>
-          {value}
+        <p className={s.currency__price}>
+          {price}
           <span className={s.currency__symbol}>{symbol}</span>
         </p>
-        <p className={s.currency__dynamics}>{getPercentageDiff(dynamics)}</p>
+        <p
+          className={`${s.currency__dynamics} ${
+            s[`currency__dynamics_${dynamics >= 0 ? 'negative' : 'positive'}`]
+          }`}
+        >
+          {getPercentageDiff(dynamics)}
+        </p>
       </div>
+      {active && <div className={s.currency__shadow} />}
     </article>
   );
 }

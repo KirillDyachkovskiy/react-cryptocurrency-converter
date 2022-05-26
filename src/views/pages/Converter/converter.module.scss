@@ -1,7 +1,23 @@
+@import "../../styles/variables";
+
 .converter {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__title {
+    @include converter-title;
+  }
+
+  &__subtitle {
+    @include converter-subtitle;
+  }
 
   &__chart {
     width: 960px;

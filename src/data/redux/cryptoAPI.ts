@@ -21,7 +21,13 @@ export const cryptoAPI = createApi({
           ids: id,
         },
       }),
-      transformResponse: ([coin]) => coin,
+      transformResponse: ([coin]) => ({
+        id: coin.id,
+        symbol: coin.symbol,
+        image: coin.image,
+        price: coin.current_price,
+        dynamics: coin.price_change_percentage_24h,
+      }),
     }),
     getHistory: builder.query<TCoinHistoryRes, TCoinHistoryReq>({
       query: ({ currency, id, days }) => ({

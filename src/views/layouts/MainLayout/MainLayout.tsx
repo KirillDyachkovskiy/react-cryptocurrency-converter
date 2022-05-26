@@ -12,7 +12,9 @@ const navbarItems = [
 function MainLayout() {
   return (
     <div className={s.mainLayout}>
-      <Navbar items={navbarItems} />
+      <aside className={s.mainLayout__aside}>
+        <Navbar items={navbarItems} />
+      </aside>
       <main className={s.mainLayout__main}>
         <Outlet />
       </main>

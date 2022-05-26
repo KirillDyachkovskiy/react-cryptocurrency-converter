@@ -1,20 +1,40 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { TCoinIds, TTab } from '../types';
+import { TCoin, TCoinIds } from "../types";
+// import { useGetDataQuery } from './cryptoAPI';
 
 type TCurrentPayload = {
   id: TCoinIds;
-  value: number;
+  price: number;
   dynamics: number;
 };
+//
+// export const updateAllData = createAsyncThunk(
+//   'current/updateData',
+//   async () => {
+//     const { data: bitcoin, isSuccess: isBitcoinSuccess } = useGetDataQuery({
+//       currency: 'usd',
+//       id: 'bitcoin',
+//     });
+//     const { data: ethereum, isSuccess: isEthereumSuccess } = useGetDataQuery({
+//       currency: 'usd',
+//       id: 'ethereum',
+//     });
+//
+//     if (isBitcoinSuccess && isEthereumSuccess) {
+//       currentActions.updateData(bitcoin);
+//       currentActions.updateData(ethereum);
+//     }
+//   }
+// );
 
-const initialState: TTab[] = [
+const initialState: TCoin[] = [
   {
     id: 'bitcoin',
     symbol: 'btc',
     image:
       'https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579',
-    value: 0,
+    price: 0,
     dynamics: 0,
   },
   {
@@ -22,23 +42,23 @@ const initialState: TTab[] = [
     symbol: 'eth',
     image:
       'https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880',
-    value: 0,
+    price: 0,
     dynamics: 0,
   },
 ];
 
 const currentSlice = createSlice({
-  name: 'catalog',
+  name: 'current',
   initialState,
   reducers: {
     updateData: (
-      state: TTab[],
-      { payload }: PayloadAction<TCurrentPayload>
+      state: TCoin[],
+      { payload: { id, price, dynamics } }: PayloadAction<TCurrentPayload>
     ) => {
-      state.forEach((currency: TTab) => {
-        if (currency.id === payload.id) {
-          currency.value = payload.value;
-          currency.dynamics = payload.dynamics;
+      state.forEach((currency: TCoin) => {
+        if (currency.id === id) {
+          currency.price = price;
+          currency.dynamics = dynamics;
         }
       });
     },

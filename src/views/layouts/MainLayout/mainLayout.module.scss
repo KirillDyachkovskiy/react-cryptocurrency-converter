@@ -1,9 +1,17 @@
+@import '../../styles/variables';
+
 .mainLayout {
   display: flex;
-  gap: 20px;
+  min-height: 100vh;
+
+  &__aside {
+    flex: 0 0 300px;
+    top: 0;
+    position: sticky;
+    background: $sidebar-bg;
+  }
 
   &__main {
-    padding: 0 20px;
-    margin: 20px auto;
+    padding: 40px 65px;
   }
 }

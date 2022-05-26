@@ -3,11 +3,13 @@
 .navbar {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 40px;
+  padding: 60px;
 
   &__item {
+    text-decoration: none;
     cursor: pointer;
-    color: $navbar-item-color;
+    @include navbar-item;
 
     &_active {
       color: $navbar-active-item-color;

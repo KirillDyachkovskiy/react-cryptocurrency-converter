@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
 export { default as Switcher } from './Switcher';
+export { default as Chart } from './Chart';

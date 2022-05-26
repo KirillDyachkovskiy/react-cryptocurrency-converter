@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .currency {
+  position: relative;
   height: 75px;
   width: 190px;
   border-radius: 10px;
@@ -18,7 +19,7 @@
     border: none;
     background-color: $currency-active-background;
 
-    .currency__value {
+    .currency__price {
       @include currency-value($light);
     }
 
@@ -42,7 +43,7 @@
     gap: 10px;
   }
 
-  &__value {
+  &__price {
     @include currency-value;
   }
 
@@ -54,5 +55,27 @@
   &__dynamics {
     align-self: flex-end;
     @include currency-dynamics;
+
+    &_negative {
+      color: $negative-dynamics;
+    }
+
+    &_positive {
+      color: $positive-dynamics;
+    }
+  }
+
+  &__shadow {
+    width: 150px;
+    height: 75px;
+
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    background: linear-gradient(113.91deg, #40DDFF 0%, rgba(11, 152, 197, 0.0001) 82.9%);
+    mix-blend-mode: normal;
+    opacity: 0.5;
+    filter: blur(90.885px);
+    border-radius: 5px;
   }
 }

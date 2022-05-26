@@ -15,28 +15,38 @@ function Converter() {
 
   const [id, setIds] = useState<TCoinIds>('bitcoin');
 
-  const { data } = useGetDataQuery({ currency: 'usd' as TCurrency, id });
+  const { data: bitcoin } = useGetDataQuery({
+    currency: 'usd' as TCurrency,
+    id: 'bitcoin',
+  });
+  const { data: ethereum } = useGetDataQuery({
+    currency: 'usd' as TCurrency,
+    id: 'ethereum',
+  });
   const { updateData } = useActions();
 
   useEffect(() => {
-    if (data) {
-      const payload = {
-        id,
-        value: data.current_price,
-        dynamics: data.price_change_percentage_24h,
-      };
-
-      updateData(payload);
+    if (bitcoin) {
+      updateData(bitcoin);
     }
-  }, [data, id, updateData]);
+    if (ethereum) {
+      updateData(ethereum);
+    }
+  }, [bitcoin, ethereum, updateData]);
 
   return (
-    <div className={s.converter}>
+    <section className={s.converter}>
+      <header className={s.converter__header}>
+        <h1 className={s.converter__title}>Dashboard</h1>
+        <p className={s.converter__subtitle}>
+          World's best cryptocurrency exchange
+        </p>
+      </header>
       <Switcher name='currencySwitcher' selected={id} setSelected={setIds} />
       <section className={s.converter__chart}>
         <Chart selected={id} />
       </section>
-    </div>
+    </section>
   );
 }
 

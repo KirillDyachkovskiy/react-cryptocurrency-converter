@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { TCoinIds, TTab } from '../../../data/types';
+import { TCoin, TCoinIds } from '../../../data/types';
 import { selectCurrency } from '../../../data/redux';
 
 import { useAppSelector } from '../../hooks';
@@ -23,7 +23,7 @@ function Switcher({ name, selected, setSelected }: ISwitcher) {
 
   return (
     <div className={s.switcher}>
-      {currencies.map(({ id, symbol, image, value, dynamics }: TTab) => (
+      {currencies.map(({ id, symbol, image, price, dynamics }: TCoin) => (
         <label
           key={id}
           htmlFor={`${name}_${id}`}
@@ -40,7 +40,7 @@ function Switcher({ name, selected, setSelected }: ISwitcher) {
           <Currency
             active={selected === id}
             image={image}
-            value={value}
+            price={price}
             symbol={symbol}
             dynamics={dynamics}
           />

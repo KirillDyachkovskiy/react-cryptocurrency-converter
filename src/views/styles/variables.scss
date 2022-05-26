@@ -1,10 +1,41 @@
 $dark: rgba(76, 76, 102, 1);
 $light: rgba(255, 255, 255, 1);
 
-$navbar-item-color: rgb(50, 50, 50);
-$navbar-active-item-color: rgb(197, 19, 19);
+$background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, #FFFFFF 0%, #FEFEFF 100%);
+
+$navbar-item-color: rgba(111, 108, 153, 1);
+$navbar-active-item-color: rgba(83, 185, 234, 1);
 
 $currency-active-background: rgba(83, 185, 234, 1);
+$currency-active-shadow: linear-gradient(113.91deg, #40DDFF 0%, rgba(11, 152, 197, 0.0001) 82.9%);
+
+$negative-dynamics: rgb(208, 43, 43);
+$positive-dynamics: rgb(71, 150, 42);
+
+$preloader: rgb(211, 106, 17);
+
+$sidebar-bg: linear-gradient(180deg, rgba(255, 246, 240, 0.38) 0%, rgba(251, 232, 233, 0.31) 57.44%, rgba(252, 252, 255, 0.57) 100%);
+
+@mixin converter-title() {
+  font-weight: 700;
+  font-size: 30px;
+  color: $dark;
+  opacity: 0.9;
+}
+
+@mixin converter-subtitle() {
+  font-weight: 400;
+  font-size: 13px;
+  color: $dark;
+  opacity: 0.7;
+}
+
+@mixin navbar-item() {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: $navbar-item-color;
+}
 
 @mixin currency-value($active: $dark) {
   font-weight: 500;
