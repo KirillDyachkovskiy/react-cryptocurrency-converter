@@ -7,6 +7,7 @@ import store from './data/redux';
 
 import App from './views/App';
 
+import './views/styles/reset.scss';
 import './views/styles/index.scss';
 
 const root = ReactDOM.createRoot(

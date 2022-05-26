@@ -1,6 +1,8 @@
 // import { useGetCoinDataQuery } from '../../../data/redux/cryptoAPI';
 import { useTitle } from '../../hooks';
 
+import { Switcher } from '../../components';
+
 import s from './wallet.module.scss';
 
 function Wallet() {
@@ -13,7 +15,12 @@ function Wallet() {
   // console.log(data);
   // console.log(isFetching);
 
-  return <h1 className={s.wallet}>Wallet</h1>;
+  return (
+    <>
+      <h1 className={s.wallet}>Wallet</h1>
+      <Switcher name='currencySwitcher' onChange={console.log} />
+    </>
+  );
 }
 
 export default Wallet;
