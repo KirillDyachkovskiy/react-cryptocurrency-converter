@@ -24,7 +24,7 @@
     width: 1px;
 
     &:focus-visible + .radiobutton__label {
-      @include radiobutton-label-tabed;
+      @include tabed;
     }
 
     &:checked + .radiobutton__label {

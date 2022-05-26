@@ -1,34 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TCoin, TCoinIds } from '../types';
-// import { useGetDataQuery } from './cryptoAPI';
 
-type TCurrentPayload = {
+type TSetDataPayload = {
   id: TCoinIds;
   price: number;
   dynamics: number;
 };
-//
-// export const updateAllData = createAsyncThunk(
-//   'current/updateData',
-//   async () => {
-//     const { data: bitcoin, isSuccess: isBitcoinSuccess } = useGetDataQuery({
-//       currency: 'usd',
-//       id: 'bitcoin',
-//     });
-//     const { data: ethereum, isSuccess: isEthereumSuccess } = useGetDataQuery({
-//       currency: 'usd',
-//       id: 'ethereum',
-//     });
-//
-//     if (isBitcoinSuccess && isEthereumSuccess) {
-//       currentActions.updateData(bitcoin);
-//       currentActions.updateData(ethereum);
-//     }
-//   }
-// );
 
-const initialState: TCoin[] = [
+type TCurrentState = TCoin[];
+
+const initialState: TCurrentState = [
   {
     id: 'bitcoin',
     symbol: 'btc',
@@ -51,9 +33,9 @@ const currentSlice = createSlice({
   name: 'current',
   initialState,
   reducers: {
-    updateData: (
-      state: TCoin[],
-      { payload: { id, price, dynamics } }: PayloadAction<TCurrentPayload>
+    setData: (
+      state: TCurrentState,
+      { payload: { id, price, dynamics } }: PayloadAction<TSetDataPayload>
     ) => {
       state.forEach((currency: TCoin) => {
         if (currency.id === id) {

@@ -18,10 +18,4 @@
   &__subtitle {
     @include converter-subtitle;
   }
-
-  &__chart {
-    margin-top: 20px;
-    width: 960px;
-    height: 420px;
-  }
 }

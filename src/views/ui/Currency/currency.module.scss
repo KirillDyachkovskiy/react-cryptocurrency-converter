@@ -6,7 +6,7 @@
   width: 190px;
   border-radius: 10px;
   box-sizing: border-box;
-  border: 1px solid #E2E2E8;
+  border: 1px solid $currency-border;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,7 +17,7 @@
 
   &_active {
     border: none;
-    background-color: $currency-active-background;
+    background-color: $active;
 
     .currency__price {
       @include currency-value($light);
@@ -30,6 +30,10 @@
     .currency__dynamics {
       @include currency-dynamics($light);
     }
+
+    .currency__trend {
+      color: $light
+    }
   }
 
   &__icon {
@@ -38,6 +42,7 @@
   }
 
   &__info {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -65,14 +70,22 @@
     }
   }
 
+  &__trend {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 5px;
+    bottom: -7px;
+    color: $dark;
+  }
+
   &__shadow {
     width: 150px;
     height: 75px;
-
     position: absolute;
     top: 10px;
     left: -10px;
-    background: linear-gradient(113.91deg, #40DDFF 0%, rgba(11, 152, 197, 0.0001) 82.9%);
+    background: $currency-active-shadow;
     mix-blend-mode: normal;
     opacity: 0.5;
     filter: blur(90.885px);

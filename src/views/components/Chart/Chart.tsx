@@ -11,8 +11,13 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useGetHistoryQuery } from '../../../data/redux/cryptoAPI';
-import { TCoinIds } from '../../../data/types';
+import { selectChart } from '../../../data/redux';
+
+import { useAppSelector } from '../../hooks';
+
 import { Preloader } from '../../ui';
+
+import s from './chart.module.scss';
 
 ChartJS.register(
   CategoryScale,
@@ -40,6 +45,9 @@ const options = {
       grid: {
         display: false,
       },
+      ticks: {
+        display: false,
+      },
     },
     y: {
       grid: {
@@ -49,15 +57,12 @@ const options = {
   },
 };
 
-interface IChart {
-  id: TCoinIds;
-  days: number;
-}
+function Chart() {
+  const { days, id } = useAppSelector(selectChart);
 
-function Chart({ id, days }: IChart) {
-  const borderColor = id === 'bitcoin' ? 'rgb(201,142,29)' : 'rgb(88,56,134)';
+  const borderColor = id === 'bitcoin' ? 'rgb(234,119,54)' : 'rgb(98,70,136)';
   const backgroundColor =
-    id === 'bitcoin' ? 'rgba(201,142,29,0.7)' : 'rgba(88,56,134,0.7)';
+    id === 'bitcoin' ? 'rgba(234,119,54,0.7)' : 'rgba(98,70,136,0.7)';
 
   const { data: history, isFetching } = useGetHistoryQuery({
     currency: 'usd',
@@ -66,7 +71,11 @@ function Chart({ id, days }: IChart) {
   });
 
   if (isFetching) {
-    return <Preloader />;
+    return (
+      <div className={`${s.chart} ${s.chart__preloader}`}>
+        <Preloader />
+      </div>
+    );
   }
 
   const labels = history?.map((coin) => {
@@ -96,7 +105,7 @@ function Chart({ id, days }: IChart) {
     ],
   };
 
-  return <Line options={options} data={line} />;
+  return <Line className={s.chart} options={options} data={line} />;
 }
 
 export default Chart;

@@ -2,6 +2,9 @@ import { ReactElement } from 'react';
 
 export type TCurrency = 'usd';
 export type TCoinIds = 'bitcoin' | 'ethereum';
+export type TWallet = TCurrency | TCoinIds;
+
+export type TDays = 1 | 7 | 14 | 30;
 
 export type TCoin = {
   id: TCoinIds;

@@ -1,8 +1,7 @@
-import { Dispatch, SetStateAction } from 'react';
 import { TCoin, TCoinIds } from '../../../data/types';
-import { selectCurrency } from '../../../data/redux';
+import { selectChart, selectCurrency } from '../../../data/redux';
 
-import { useAppSelector } from '../../hooks';
+import { useActions, useAppSelector } from '../../hooks';
 
 import { Currency } from '../../ui';
 
@@ -10,13 +9,15 @@ import s from './switcher.module.scss';
 
 interface ISwitcher {
   name: string;
-  selected: TCoinIds;
-  setSelected: Dispatch<SetStateAction<TCoinIds>>;
 }
 
-function Switcher({ name, selected, setSelected }: ISwitcher) {
-  const select = (hovered: TCoinIds) => () => {
-    setSelected(hovered);
+function Switcher({ name }: ISwitcher) {
+  const { id: selectedId } = useAppSelector(selectChart);
+
+  const { setCoin } = useActions();
+
+  const switchCoin = (id: TCoinIds) => () => {
+    setCoin({ id });
   };
 
   const currencies = useAppSelector(selectCurrency);
@@ -34,11 +35,11 @@ function Switcher({ name, selected, setSelected }: ISwitcher) {
             type='radio'
             id={`${name}_${id}`}
             name={name}
-            checked={selected === id}
-            onChange={select(id)}
+            checked={selectedId === id}
+            onChange={switchCoin(id)}
           />
           <Currency
-            active={selected === id}
+            active={selectedId === id}
             image={image}
             price={price}
             symbol={symbol}
