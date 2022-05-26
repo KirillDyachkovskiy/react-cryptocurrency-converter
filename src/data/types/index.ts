@@ -28,10 +28,10 @@ export type TCoin = {
 };
 
 export type TCurrency = 'usd';
-export type TCoinIds = 'bitcoin';
+export type TCoinIds = 'bitcoin' | 'ethereum';
 
 export type TTab = {
-  id: number;
+  id: TCoinIds;
   symbol: string;
   image: string;
   value: number;

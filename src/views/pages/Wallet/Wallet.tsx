@@ -1,24 +1,36 @@
-// import { useGetCoinDataQuery } from '../../../data/redux/cryptoAPI';
+import { useEffect, useState } from 'react';
+import { useGetCoinDataQuery } from '../../../data/redux/cryptoAPI';
 import { useTitle } from '../../hooks';
 
-import { Switcher } from '../../components';
+import { TCoinIds, TCurrency } from '../../../data/types';
 
-import s from './wallet.module.scss';
+import { Switcher } from '../../components';
+import useActions from '../../hooks/useActions';
 
 function Wallet() {
   useTitle('Wallet');
-  //
-  // const request = { vs_currency: 'usd', ids: 'bitcoin' };
-  //
-  // const { data, isFetching } = useGetCoinDataQuery(request);
-  //
-  // console.log(data);
-  // console.log(isFetching);
+
+  const [id, setIds] = useState<TCoinIds>('bitcoin');
+
+  const { data } = useGetCoinDataQuery({ currency: 'usd' as TCurrency, id });
+  const { updateData } = useActions();
+
+  useEffect(() => {
+    if (data) {
+      const payload = {
+        id,
+        value: data[0].current_price,
+        dynamics: data[0].price_change_percentage_24h,
+      };
+
+      updateData(payload);
+    }
+  }, [data, id, updateData]);
 
   return (
     <>
-      <h1 className={s.wallet}>Wallet</h1>
-      <Switcher name='currencySwitcher' onChange={console.log} />
+      <Switcher name='currencySwitcher' selected={id} setSelected={setIds} />
+      <pre>{JSON.stringify(data)}</pre>
     </>
   );
 }
