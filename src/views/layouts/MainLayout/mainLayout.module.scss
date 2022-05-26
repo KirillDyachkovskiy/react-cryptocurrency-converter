@@ -1,7 +1,9 @@
 .mainLayout {
-  color: red;
+  display: flex;
+  gap: 20px;
 
   &__main {
-    display: flex;
+    padding: 0 20px;
+    margin: 20px auto;
   }
 }

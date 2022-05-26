@@ -11,13 +11,12 @@ const navbarItems = [
 
 function MainLayout() {
   return (
-    <>
-      <header className={s.mainLayout}>Header</header>
+    <div className={s.mainLayout}>
+      <Navbar items={navbarItems} />
       <main className={s.mainLayout__main}>
-        <Navbar items={navbarItems} />
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }
 

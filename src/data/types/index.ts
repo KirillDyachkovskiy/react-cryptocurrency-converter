@@ -37,3 +37,5 @@ export type TTab = {
   value: number;
   dynamics: number;
 };
+
+export type THistoryItem = [number, number];
