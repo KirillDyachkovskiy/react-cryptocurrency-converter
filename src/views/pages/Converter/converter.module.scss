@@ -3,7 +3,7 @@
 .converter {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 
   &__header {
     display: flex;
@@ -20,6 +20,7 @@
   }
 
   &__chart {
+    margin-top: 20px;
     width: 960px;
     height: 420px;
   }

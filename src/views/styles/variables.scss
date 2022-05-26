@@ -16,6 +16,12 @@ $preloader: rgb(211, 106, 17);
 
 $sidebar-bg: linear-gradient(180deg, rgba(255, 246, 240, 0.38) 0%, rgba(251, 232, 233, 0.31) 57.44%, rgba(252, 252, 255, 0.57) 100%);
 
+@mixin layout-logo() {
+  font-weight: 700;
+  font-size: 18px;
+  color: #4C4C66;
+}
+
 @mixin converter-title() {
   font-weight: 700;
   font-size: 30px;
@@ -55,4 +61,23 @@ $sidebar-bg: linear-gradient(180deg, rgba(255, 246, 240, 0.38) 0%, rgba(251, 232
   font-weight: 400;
   font-size: 11px;
   color: $active;
+}
+
+$radiobutton-label-active-color: rgba(76, 76, 102, 0.5);
+$radiobutton-label-active-color: rgba(76, 76, 102, 0.5);
+
+@mixin radiobutton-label() {
+  background-color: $light;
+  color: $dark;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@mixin radiobutton-label-checked() {
+  background-color: $dark;
+  color: $light;
+}
+
+@mixin radiobutton-label-tabed() {
+  background: linear-gradient(113.91deg, #40DDFF 0%, rgba(11, 152, 197, 0.0001) 82.9%);
 }

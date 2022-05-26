@@ -6,9 +6,26 @@
 
   &__aside {
     flex: 0 0 300px;
+    box-sizing: border-box;
     top: 0;
     position: sticky;
     background: $sidebar-bg;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    padding: 60px;
+  }
+
+  &__logo {
+    display: flex;
+    gap: 20px;
+
+    @include layout-logo;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
   }
 
   &__main {

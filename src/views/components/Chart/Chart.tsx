@@ -50,19 +50,19 @@ const options = {
 };
 
 interface IChart {
-  selected: TCoinIds;
+  id: TCoinIds;
+  days: number;
 }
 
-function Chart({ selected }: IChart) {
-  const borderColor =
-    selected === 'bitcoin' ? 'rgb(201,142,29)' : 'rgb(88,56,134)';
+function Chart({ id, days }: IChart) {
+  const borderColor = id === 'bitcoin' ? 'rgb(201,142,29)' : 'rgb(88,56,134)';
   const backgroundColor =
-    selected === 'bitcoin' ? 'rgba(201,142,29,0.7)' : 'rgba(88,56,134,0.7)';
+    id === 'bitcoin' ? 'rgba(201,142,29,0.7)' : 'rgba(88,56,134,0.7)';
 
   const { data: history, isFetching } = useGetHistoryQuery({
     currency: 'usd',
-    id: selected,
-    days: 14,
+    id,
+    days,
   });
 
   if (isFetching) {
@@ -84,7 +84,7 @@ function Chart({ selected }: IChart) {
     labels,
     datasets: [
       {
-        label: selected,
+        label: id,
         data,
         fill: true,
         borderColor,
