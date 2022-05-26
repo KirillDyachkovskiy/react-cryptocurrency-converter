@@ -15,12 +15,16 @@
     gap: 70px;
     padding: 60px;
   }
-
+  
   &__logo {
     display: flex;
     gap: 20px;
-
+    outline: none;
     @include layout-logo;
+
+    &:hover, &:focus {
+      color: $active;
+    }
   }
 
   &__icon {

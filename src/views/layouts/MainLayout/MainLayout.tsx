@@ -17,11 +17,9 @@ function MainLayout() {
   return (
     <div className={s.mainLayout}>
       <aside className={s.mainLayout__aside}>
-        <a href='https://bs.world/'>
-          <div className={s.mainLayout__logo}>
-            <SiHiveBlockchain className={s.mainLayout__icon} />
-            <h1>Blockchain solutions</h1>
-          </div>
+        <a href='https://bs.world/' className={s.mainLayout__logo}>
+          <SiHiveBlockchain className={s.mainLayout__icon} />
+          <h1>Blockchain solutions</h1>
         </a>
         <Navbar items={navbarItems} />
       </aside>

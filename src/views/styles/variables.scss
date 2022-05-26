@@ -5,7 +5,6 @@ $active: rgba(83, 185, 234, 1);
 $background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, #FFFFFF 0%, #FEFEFF 100%);
 
 $navbar-item-color: rgba(111, 108, 153, 1);
-$navbar-active-item-color: rgba(83, 185, 234, 1);
 
 $currency-border: rgb(225, 225, 225);
 $currency-active-shadow: linear-gradient(113.91deg, #40DDFF 0%, rgba(11, 152, 197, 0.0001) 82.9%);
@@ -82,7 +81,6 @@ $radiobutton-label-active-color: rgba(76, 76, 102, 0.5);
   background-color: $active;
   color: $light;
 }
-
 
 @mixin tabed() {
   background: linear-gradient(113.91deg, $active 0%, $dark 82.9%);

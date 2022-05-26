@@ -11,6 +11,7 @@ function Navbar({ items }: ISidebar) {
   return (
     <nav>
       <ul className={s.navbar}>
+        g
         {items.map(({ path, icon, label }: TSidebarItem) => (
           <li key={path}>
             <NavLink

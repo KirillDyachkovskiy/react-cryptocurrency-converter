@@ -10,9 +10,14 @@
     align-items: center;
     cursor: pointer;
     @include navbar-item;
+    outline: none;
 
     &_active {
-      color: $navbar-active-item-color;
+      color: $active;
+    }
+
+    &:focus-visible {
+      font-weight: bolder;
     }
   }
 
