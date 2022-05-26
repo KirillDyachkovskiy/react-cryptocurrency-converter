@@ -1,11 +1,7 @@
 import { NavLink } from 'react-router-dom';
+import { TSidebarItem } from '../../../data/types';
 
 import s from './navbar.module.scss';
-
-type TSidebarItem = {
-  path: string;
-  label: string;
-};
 
 interface ISidebar {
   items: TSidebarItem[];
@@ -15,15 +11,16 @@ function Navbar({ items }: ISidebar) {
   return (
     <nav>
       <ul className={s.navbar}>
-        {items.map((item: TSidebarItem) => (
-          <li key={item.path}>
+        {items.map(({ path, icon, label }: TSidebarItem) => (
+          <li key={path}>
             <NavLink
               className={({ isActive }) =>
                 `${s.navbar__item} ${isActive ? s.navbar__item_active : ''}`
               }
-              to={item.path}
+              to={path}
             >
-              {item.label}
+              <i className={s.navbar__icon}>{icon}</i>
+              {label}
             </NavLink>
           </li>
         ))}

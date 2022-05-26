@@ -39,7 +39,7 @@ function Converter() {
       <header className={s.converter__header}>
         <h1 className={s.converter__title}>Dashboard</h1>
         <p className={s.converter__subtitle}>
-          World's best cryptocurrency exchange
+          World&apos;s best cryptocurrency exchange
         </p>
       </header>
       <Switcher name='currencySwitcher' selected={id} setSelected={setIds} />

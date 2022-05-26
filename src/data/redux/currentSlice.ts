@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TCoin, TCoinIds } from "../types";
+import { TCoin, TCoinIds } from '../types';
 // import { useGetDataQuery } from './cryptoAPI';
 
 type TCurrentPayload = {

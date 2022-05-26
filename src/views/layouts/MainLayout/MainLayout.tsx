@@ -1,12 +1,15 @@
 import { Outlet } from 'react-router-dom';
 
+import { RiDashboardFill } from 'react-icons/ri';
+import { IoIosWallet } from 'react-icons/io';
+
 import { Navbar } from '../../ui';
 
 import s from './mainLayout.module.scss';
 
 const navbarItems = [
-  { path: '/', label: 'Converter' },
-  { path: '/wallet', label: 'Wallet' },
+  { path: '/', label: 'Converter', icon: <RiDashboardFill /> },
+  { path: '/wallet', label: 'Wallet', icon: <IoIosWallet /> },
 ];
 
 function MainLayout() {

@@ -7,6 +7,8 @@
   padding: 60px;
 
   &__item {
+    display: flex;
+    align-items: center;
     text-decoration: none;
     cursor: pointer;
     @include navbar-item;
@@ -14,5 +16,9 @@
     &_active {
       color: $navbar-active-item-color;
     }
+  }
+
+  &__icon {
+    margin-right: 30px;
   }
 }
