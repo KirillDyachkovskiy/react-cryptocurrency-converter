@@ -1,5 +1,5 @@
 import { selectConvert } from '../../../data/redux';
-import { TWallet } from '../../../data/types';
+import { TSymbols } from '../../../data/types';
 
 import { useAppSelector } from '../../hooks';
 
@@ -9,7 +9,7 @@ import s from './converter.module.scss';
 
 interface IConverterItem {
   type: 'from' | 'to';
-  id: TWallet;
+  id: TSymbols;
   value: number;
 }
 

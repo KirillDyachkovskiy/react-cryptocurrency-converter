@@ -1,24 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TWallet } from '../types';
+import { TSymbols } from '../types';
 
 type TSetFromPayload = {
-  id: TWallet;
+  id: TSymbols;
   value: number;
 };
 
 type TSetToPayload = {
-  id: TWallet;
+  id: TSymbols;
   multiplier: number;
 };
 
 type TCurrenciesState = {
   from: {
-    id: TWallet;
+    id: TSymbols;
     value: number;
   };
   to: {
-    id: TWallet;
+    id: TSymbols;
     multiplier: number;
   }[];
 };
@@ -30,8 +30,8 @@ const initialState: TCurrenciesState = {
   },
   to: [
     {
-      id: 'bitcoin',
-      multiplier: 1,
+      id: 'btc',
+      multiplier: 0.00124,
     },
   ],
 };
