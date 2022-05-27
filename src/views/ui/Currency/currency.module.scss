@@ -32,17 +32,24 @@
     }
 
     .currency__trend {
-      color: $light
+      color: $light;
+    }
+
+    .currency__icon {
+      color: $light;
     }
   }
 
   &__icon {
     height: 36px;
     width: 36px;
+    color: $dark;
   }
 
   &__info {
     position: relative;
+    width: 100px;
+    text-align: right;
     display: flex;
     flex-direction: column;
     gap: 10px;

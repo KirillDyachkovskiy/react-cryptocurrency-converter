@@ -7,16 +7,24 @@ type TSetValuePayload = {
 };
 
 type TWalletState = {
-  usd: number;
-  bitcoin: number;
-  ethereum: number;
-};
+  id: TWallet;
+  value: number;
+}[];
 
-const initialState: TWalletState = {
-  usd: 10000,
-  bitcoin: 10000,
-  ethereum: 10000,
-};
+const initialState: TWalletState = [
+  {
+    id: 'usd',
+    value: 10000,
+  },
+  {
+    id: 'bitcoin',
+    value: 10000,
+  },
+  {
+    id: 'ethereum',
+    value: 10000,
+  },
+];
 
 const walletSlice = createSlice({
   name: 'wallet',
@@ -26,7 +34,11 @@ const walletSlice = createSlice({
       state: TWalletState,
       { payload: { id, value } }: PayloadAction<TSetValuePayload>
     ) => {
-      state[id] = value;
+      state.forEach((item) => {
+        if (item.id === id) {
+          item.value = value;
+        }
+      });
     },
   },
 });

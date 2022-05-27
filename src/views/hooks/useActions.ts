@@ -1,13 +1,15 @@
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { currentActions } from '../../data/redux/currentSlice';
-import { chartActions } from '../../data/redux/chartSlice';
+import { currenciesActions } from '../../data/redux/currenciesSlice';
+import { convertActions } from '../../data/redux/convertSlice';
 import { walletActions } from '../../data/redux/walletSlice';
+import { chartActions } from '../../data/redux/chartSlice';
 
 const allActions = {
-  ...currentActions,
-  ...chartActions,
+  ...currenciesActions,
+  ...convertActions,
   ...walletActions,
+  ...chartActions,
 };
 
 export default function useActions() {

@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FocusEventHandler, RefObject } from 'react';
+import { ChangeEventHandler, FocusEventHandler } from 'react';
 import s from './input.module.scss';
 
 interface IInput {
@@ -7,21 +7,12 @@ interface IInput {
   onChange: ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   onBlur?: FocusEventHandler<HTMLInputElement>;
-  customRef?: RefObject<HTMLInputElement>;
 }
 
-function Input({
-  id,
-  value,
-  onChange,
-  placeholder,
-  onBlur,
-  customRef,
-}: IInput) {
+function Input({ id, value, onChange, placeholder, onBlur }: IInput) {
   return (
     <label htmlFor={id}>
       <input
-        ref={customRef}
         id={id}
         className={s.input}
         type='text'

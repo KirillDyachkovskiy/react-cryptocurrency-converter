@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { cryptoAPI } from './cryptoAPI';
-import { currentReducer } from './currentSlice';
+import { currenciesReducer } from './currenciesSlice';
+import { convertReducer } from './convertSlice';
 import { walletReducer } from './walletSlice';
 import { chartReducer } from './chartSlice';
 
 const index = configureStore({
   reducer: {
-    current: currentReducer,
+    currencies: currenciesReducer,
+    convert: convertReducer,
     wallet: walletReducer,
     chart: chartReducer,
     [cryptoAPI.reducerPath]: cryptoAPI.reducer,
@@ -17,7 +19,8 @@ const index = configureStore({
 
 export type TRootState = ReturnType<typeof index.getState>;
 
-export const selectCurrency = (state: TRootState) => state.current;
+export const selectCurrencies = (state: TRootState) => state.currencies;
+export const selectWallet = (state: TRootState) => state.wallet;
 export const selectChart = (state: TRootState) => state.chart;
 
 export default index;

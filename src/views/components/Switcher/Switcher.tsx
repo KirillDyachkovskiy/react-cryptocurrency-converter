@@ -1,5 +1,5 @@
 import { TCoin, TCoinIds } from '../../../data/types';
-import { selectChart, selectCurrency } from '../../../data/redux';
+import { selectChart, selectCurrencies } from '../../../data/redux';
 
 import { useActions, useAppSelector } from '../../hooks';
 
@@ -20,11 +20,11 @@ function Switcher({ name }: ISwitcher) {
     setCoin({ id });
   };
 
-  const currencies = useAppSelector(selectCurrency);
+  const currencies = useAppSelector(selectCurrencies);
 
   return (
     <div className={s.switcher}>
-      {currencies.map(({ id, symbol, image, price, dynamics }: TCoin) => (
+      {currencies.map(({ id, symbol, price, dynamics }: TCoin) => (
         <label
           key={id}
           htmlFor={`${name}_${id}`}
@@ -40,7 +40,7 @@ function Switcher({ name }: ISwitcher) {
           />
           <Currency
             active={selectedId === id}
-            image={image}
+            id={id}
             price={price}
             symbol={symbol}
             dynamics={dynamics}

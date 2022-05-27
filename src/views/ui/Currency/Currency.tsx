@@ -1,33 +1,26 @@
 import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
+import { TCoinIds } from '../../../data/types';
 
 import { getPercentageDiff } from '../../../helpers';
 
-import Image from '../Image';
+import Icon from '../Icon';
 
 import s from './currency.module.scss';
 
 interface ICurrency {
   active?: boolean;
-  image: string;
+  id: TCoinIds;
   price: number;
   symbol: string;
   dynamics: number;
 }
 
-function Currency({
-  active = false,
-  image,
-  price,
-  symbol,
-  dynamics,
-}: ICurrency) {
+function Currency({ active = false, id, price, symbol, dynamics }: ICurrency) {
   const isGrow = dynamics >= 0;
 
   return (
     <article className={`${s.currency} ${active ? s.currency_active : ''}`}>
-      <div className={s.currency__icon}>
-        <Image src={image} alt={symbol} />
-      </div>
+      <Icon name={id} className={s.currency__icon} />
       <div className={s.currency__info}>
         <p className={s.currency__price}>
           {price}

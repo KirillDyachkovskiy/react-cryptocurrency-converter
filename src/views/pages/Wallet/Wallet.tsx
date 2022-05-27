@@ -1,6 +1,7 @@
 import { useTitle } from '../../hooks';
 
 import { ContentLayout } from '../../layouts';
+import { Converter } from '../../components';
 
 import s from './wallet.module.scss';
 
@@ -9,7 +10,9 @@ function Wallet() {
 
   return (
     <ContentLayout title='Wallet'>
-      <main className={s.dashboard}>Lol</main>
+      <main className={s.wallet}>
+        <Converter />
+      </main>
     </ContentLayout>
   );
 }

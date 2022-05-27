@@ -1,3 +1,3 @@
-import Chart from './Chart';
+import Converter from './Converter';
 
-export default Chart;
+export default Converter;

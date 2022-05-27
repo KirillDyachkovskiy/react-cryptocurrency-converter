@@ -8,33 +8,29 @@ type TSetDataPayload = {
   dynamics: number;
 };
 
-type TCurrentState = TCoin[];
+type TCurrenciesState = TCoin[];
 
-const initialState: TCurrentState = [
+const initialState: TCurrenciesState = [
   {
     id: 'bitcoin',
     symbol: 'btc',
-    image:
-      'https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579',
     price: 0,
     dynamics: 0,
   },
   {
     id: 'ethereum',
     symbol: 'eth',
-    image:
-      'https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880',
     price: 0,
     dynamics: 0,
   },
 ];
 
-const currentSlice = createSlice({
+const currenciesSlice = createSlice({
   name: 'current',
   initialState,
   reducers: {
     setData: (
-      state: TCurrentState,
+      state: TCurrenciesState,
       { payload: { id, price, dynamics } }: PayloadAction<TSetDataPayload>
     ) => {
       state.forEach((currency: TCoin) => {
@@ -47,5 +43,5 @@ const currentSlice = createSlice({
   },
 });
 
-export const currentActions = currentSlice.actions;
-export const currentReducer = currentSlice.reducer;
+export const currenciesActions = currenciesSlice.actions;
+export const currenciesReducer = currenciesSlice.reducer;
