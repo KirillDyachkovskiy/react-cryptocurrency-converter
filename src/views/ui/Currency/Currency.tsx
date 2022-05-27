@@ -1,4 +1,3 @@
-import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
 import { TCoinIds } from '../../../data/types';
 
 import { getPercentageDiff } from '../../../helpers';
@@ -33,11 +32,10 @@ function Currency({ active = false, id, price, symbol, dynamics }: ICurrency) {
         >
           {getPercentageDiff(dynamics)}
         </p>
-        {isGrow ? (
-          <BiTrendingUp className={s.currency__trend} />
-        ) : (
-          <BiTrendingDown className={s.currency__trend} />
-        )}
+        <Icon
+          name={isGrow ? 'trendUp' : 'trendDown'}
+          className={s.currency__trend}
+        />
       </div>
       {active && <div className={s.currency__shadow} />}
     </article>

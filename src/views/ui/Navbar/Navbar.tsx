@@ -1,7 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import { TSidebarItem } from '../../../data/types';
+import { TSidebarIcon } from '../Icon/Icon';
+
+import Icon from '../Icon';
 
 import s from './navbar.module.scss';
+
+type TSidebarItem = {
+  path: string;
+  label: string;
+  icon: TSidebarIcon;
+};
 
 interface ISidebar {
   items: TSidebarItem[];
@@ -19,7 +27,7 @@ function Navbar({ items }: ISidebar) {
               }
               to={path}
             >
-              <i className={s.navbar__icon}>{icon}</i>
+              <Icon name={icon} className={s.navbar__icon} />
               {label}
             </NavLink>
           </li>

@@ -1,46 +1,38 @@
+@import "../../styles/variables";
+
 .button {
   width: 100%;
+  background-color: inherit;
   appearance: none;
-  border: 0;
-  border-radius: 4px;
   cursor: pointer;
   padding: 10px;
-  font-size: var(--14px);
-  font-family: var(--ff);
   transition: all 0.1s ease-in-out;
   white-space: nowrap;
-}
+  font-weight: 600;
+  font-size: 18px;
+  color: $dark;
+  border: 1px solid $dark;
+  border-radius: 8px;
 
-.button:hover:not[disabled],
-.button:active:not[disabled],
-.button:focus-visible:not[disabled] {
-  filter: brightness(.9);
-}
+  &:hover:not([disabled]),
+  &:active:not([disabled]),
+  &:focus-visible:not([disabled]) {
+    box-shadow: 0 2px 6px -2px $active;
+    color: $active;
+    border: 1px solid $active;
+  }
 
-.button:active:not[disabled] {
-  transform: scale(0.9);
-}
+  &:active:not([disabled]) {
+    transform: scale(0.9);
+  }
 
-.button:focus {
-  outline: none;
-}
+  &:focus {
+    outline: none;
+  }
 
-.button:disabled {
-  cursor: not-allowed;
-  filter: grayscale(80%);
-}
+  &:disabled {
+    cursor: not-allowed;
+    filter: grayscale(80%);
+  }
 
-.button_type_accent {
-  background-color: var(--accent);
-  color: var(--text-accent);
-}
-
-.button_type_secondary {
-  background-color: var(--secondary);
-  color: var(--text-secondary);
-}
-.button_type_air {
-  color: var(--text-secondary);
-  background-color: inherit;
-  padding: 0;
 }

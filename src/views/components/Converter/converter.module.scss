@@ -1,10 +1,47 @@
 @import '../../styles/variables';
 
-.chart {
-  width: 960px;
-  height: 420px;
-  padding: 20px;
+.converter {
+  box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 30px;
+  gap: 25px;
+
+  width: 380px;
+  height: 510px;
+  border: 1px solid $dark;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+
+  &__chevron {
+    color: $active;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.converterItem {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 24px;
+  width: 100%;
+  height: 82px;
+  border: 1px solid $grey;
+  border-radius: 8px;
+
+  &__type {
+    @include converter-item-type;
+  }
+
+  &__from {
+    @include converter-item-from;
+  }
+
+  &__value {
+    @include converter-item-value;
+    margin-bottom: 10px;
+    align-self: flex-end;
+  }
 }

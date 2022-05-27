@@ -1,8 +1,9 @@
-$dark: rgba(76, 76, 102, 1);
 $light: rgba(255, 255, 255, 1);
+$dark: rgba(76, 76, 102, 1);
 $active: rgba(83, 185, 234, 1);
+$grey: rgba(240, 240, 240, 1);
 
-$background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, #FFFFFF 0%, #FEFEFF 100%);
+$background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, $light 0%, $grey 100%);
 
 $navbar-item-color: rgba(111, 108, 153, 1);
 
@@ -20,10 +21,39 @@ $input-border: rgb(200, 200, 200);
 $input-border-focused: rgb(140, 140, 140);
 $input-placeholder: rgb(150, 150, 150);
 
+@mixin converter-item-type() {
+  font-weight: 400;
+  font-size: 16px;
+  color: $dark;
+  opacity: 0.7;
+  margin-bottom: 7px;
+}
+
+@mixin converter-item-from() {
+  font-weight: 600;
+  font-size: 28px;
+  color: $dark;
+}
+
+@mixin converter-item-value() {
+  font-weight: 600;
+  font-size: 28px;
+  text-align: right;
+  color: $dark;
+  opacity: 0.7;
+}
+
 @mixin layout-logo() {
   font-weight: 700;
+  font-size: 22px;
+  color: $dark;
+}
+
+@mixin navbar-item() {
+  font-weight: 400;
   font-size: 18px;
-  color: #4C4C66;
+  letter-spacing: 0.5px;
+  color: $navbar-item-color;
 }
 
 @mixin dashboard-title() {
@@ -38,13 +68,6 @@ $input-placeholder: rgb(150, 150, 150);
   font-size: 13px;
   color: $dark;
   opacity: 0.7;
-}
-
-@mixin navbar-item() {
-  font-weight: 400;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  color: $navbar-item-color;
 }
 
 @mixin currency-value($active: $dark) {

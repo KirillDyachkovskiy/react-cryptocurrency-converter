@@ -20,6 +20,7 @@ const index = configureStore({
 export type TRootState = ReturnType<typeof index.getState>;
 
 export const selectCurrencies = (state: TRootState) => state.currencies;
+export const selectConvert = (state: TRootState) => state.convert;
 export const selectWallet = (state: TRootState) => state.wallet;
 export const selectChart = (state: TRootState) => state.chart;
 
