@@ -1,4 +1,4 @@
-import { selectCurrencies } from '../../../data/redux';
+import { selectConverter } from '../../../data/redux';
 import { TSymbol } from '../../../data/types';
 
 import { useActions, useAppSelector } from '../../hooks';
@@ -14,7 +14,7 @@ interface IConverter {
 }
 
 function Converter({ isFetching, refetch }: IConverter) {
-  const { from, to } = useAppSelector(selectCurrencies);
+  const { from, to } = useAppSelector(selectConverter);
   const { setFromSymbol, setFromValue } = useActions();
 
   const onSelect = (symbol: TSymbol) => setFromSymbol({ symbol });

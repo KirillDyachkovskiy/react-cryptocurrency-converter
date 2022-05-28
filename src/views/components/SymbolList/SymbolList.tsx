@@ -1,6 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
 import { TSymbol } from '../../../data/types';
 
+import { useAppSelector } from '../../hooks';
+
+import { selectCurrencies } from '../../../data/redux';
+
 import { Dropdown, Radiobutton, Radiobuttons, Symbol } from '../../ui';
 
 import s from './symbolList.module.scss';
@@ -12,7 +16,7 @@ interface IStatusList {
 }
 
 function SymbolList({ name, selected, setSelected }: IStatusList) {
-  const availableSymbols: TSymbol[] = ['usd', 'btc', 'eth'];
+  const currencies = useAppSelector(selectCurrencies);
 
   const onChange =
     (isDropdownVisible: Dispatch<SetStateAction<false>>) =>
@@ -30,7 +34,7 @@ function SymbolList({ name, selected, setSelected }: IStatusList) {
             selected={selected}
             setSelected={onChange(isDropdownVisible)}
           >
-            {availableSymbols.map((symbol: TSymbol) => (
+            {currencies.map((symbol: TSymbol) => (
               <Radiobutton key={symbol} value={symbol}>
                 <Symbol value={symbol} active={selected === symbol} />
               </Radiobutton>

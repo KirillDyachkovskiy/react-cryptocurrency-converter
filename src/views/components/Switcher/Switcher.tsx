@@ -1,5 +1,5 @@
-import { TCoin, TCoinIds } from '../../../data/types';
-import { selectChart, selectCurrencies } from '../../../data/redux';
+import { TCoin, TCoinSymbol } from '../../../data/types';
+import { selectChart, selectCoins } from '../../../data/redux';
 
 import { useActions, useAppSelector } from '../../hooks';
 
@@ -12,19 +12,19 @@ interface ISwitcher {
 }
 
 function Switcher({ name }: ISwitcher) {
-  const { id: selectedId } = useAppSelector(selectChart);
+  const { symbol: selected } = useAppSelector(selectChart);
 
-  const { setCoin } = useActions();
+  const { setChartSymbol } = useActions();
 
-  const switchCoin = (id: TCoinIds) => () => {
-    setCoin({ id });
+  const switchCoin = (symbol: TCoinSymbol) => () => {
+    setChartSymbol({ symbol });
   };
 
-  const { coins } = useAppSelector(selectCurrencies);
+  const coins = useAppSelector(selectCoins);
 
   return (
     <div className={s.switcher}>
-      {coins.map(({ id, symbol, price, dynamics }: TCoin) => (
+      {coins.map(({ symbol, price, dynamics }: TCoin) => (
         <label
           key={symbol}
           htmlFor={`${name}_${symbol}`}
@@ -35,11 +35,11 @@ function Switcher({ name }: ISwitcher) {
             type='radio'
             id={`${name}_${symbol}`}
             name={name}
-            checked={selectedId === id}
-            onChange={switchCoin(id)}
+            checked={selected === symbol}
+            onChange={switchCoin(symbol)}
           />
           <SwitcherItem
-            active={selectedId === id}
+            active={selected === symbol}
             price={price}
             symbol={symbol}
             dynamics={dynamics}

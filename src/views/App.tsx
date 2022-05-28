@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { TCurrency } from '../data/types';
+import { TCoinId } from '../data/types';
 
 import { useGetDataQuery } from '../data/redux/cryptoAPI';
 import { useActions } from './hooks';
@@ -14,16 +14,14 @@ function App() {
     refetch: refetchBTC,
     isFetching: isBTCFetching,
   } = useGetDataQuery({
-    currency: 'usd' as TCurrency,
-    id: 'bitcoin',
+    id: TCoinId.btc,
   });
   const {
     data: ethereum,
     refetch: refetchETH,
     isFetching: isETHFetching,
   } = useGetDataQuery({
-    currency: 'usd' as TCurrency,
-    id: 'ethereum',
+    id: TCoinId.eth,
   });
   const { setData } = useActions();
 

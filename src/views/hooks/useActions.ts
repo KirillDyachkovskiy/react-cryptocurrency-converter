@@ -1,11 +1,11 @@
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { currenciesActions } from '../../data/redux/currenciesSlice';
+import { dashboardActions } from '../../data/redux/dashboardSlice';
 import { walletActions } from '../../data/redux/walletSlice';
 import { chartActions } from '../../data/redux/chartSlice';
 
 const allActions = {
-  ...currenciesActions,
+  ...dashboardActions,
   ...walletActions,
   ...chartActions,
 };

@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TCoin, TCoinIds, TSymbol } from '../types';
+import { TCoin, TSymbol } from '../types';
 import { getMultiplier } from '../helpers';
 
 type TSetDataPayload = {
-  id: TCoinIds;
   symbol: TSymbol;
   price: number;
   dynamics: number;
@@ -23,52 +22,56 @@ type TToItem = {
   multiplier: number;
 };
 
-type TCurrenciesState = {
+type TDashboardState = {
   coins: TCoin[];
-  from: {
-    symbol: TSymbol;
-    value: number;
+  availableCurrencies: TSymbol[];
+  converter: {
+    from: {
+      symbol: TSymbol;
+      value: number;
+    };
+    to: TToItem[];
   };
-  to: TToItem[];
 };
 
-const initialState: TCurrenciesState = {
+const initialState: TDashboardState = {
   coins: [
     {
-      id: 'bitcoin',
       symbol: 'btc',
       price: 1,
       dynamics: 0,
     },
     {
-      id: 'ethereum',
       symbol: 'eth',
       price: 1,
       dynamics: 0,
     },
   ],
-  from: {
-    symbol: 'usd',
-    value: 100,
+  availableCurrencies: ['btc', 'eth', 'usd'],
+  converter: {
+    from: {
+      symbol: 'usd',
+      value: 100,
+    },
+    to: [
+      {
+        symbol: 'btc',
+        multiplier: 1,
+      },
+      {
+        symbol: 'eth',
+        multiplier: 1,
+      },
+    ],
   },
-  to: [
-    {
-      symbol: 'btc',
-      multiplier: 1,
-    },
-    {
-      symbol: 'eth',
-      multiplier: 1,
-    },
-  ],
 };
 
-const currenciesSlice = createSlice({
-  name: 'current',
+const dashboardSlice = createSlice({
+  name: 'dashboard',
   initialState,
   reducers: {
     setData: (
-      state: TCurrenciesState,
+      state: TDashboardState,
       { payload: { symbol, price, dynamics } }: PayloadAction<TSetDataPayload>
     ) => {
       state.coins.forEach((coin: TCoin) => {
@@ -78,28 +81,27 @@ const currenciesSlice = createSlice({
         }
       });
 
-      state.to.forEach((toItem: TToItem) => {
+      state.converter.to.forEach((toItem: TToItem) => {
         if (toItem.symbol === symbol) {
           toItem.multiplier = 1 / price;
         }
       });
     },
     setFromSymbol: (
-      state: TCurrenciesState,
+      state: TDashboardState,
       { payload: { symbol: newSymbol } }: PayloadAction<TSetFromSymbolPayload>
     ) => {
-      const allSymbols: TSymbol[] = ['usd', 'btc', 'eth'];
-      const availableSymbols = allSymbols.filter(
+      const availableSymbols = state.availableCurrencies.filter(
         (symbol: TSymbol) => symbol !== newSymbol
       );
 
-      state.from.symbol = newSymbol;
+      state.converter.from.symbol = newSymbol;
 
       const fromPriceInUSD =
         state.coins.find((coin: TCoin) => coin.symbol === newSymbol)?.price ||
         1;
 
-      state.to = availableSymbols.map((symbol: TSymbol) => {
+      state.converter.to = availableSymbols.map((symbol: TSymbol) => {
         const toPriceInUSD =
           state.coins.find((coin: TCoin) => coin.symbol === symbol)?.price || 1;
 
@@ -110,13 +112,13 @@ const currenciesSlice = createSlice({
       });
     },
     setFromValue: (
-      state: TCurrenciesState,
+      state: TDashboardState,
       { payload: { value } }: PayloadAction<TSetFromValuePayload>
     ) => {
-      state.from.value = value;
+      state.converter.from.value = value;
     },
   },
 });
 
-export const currenciesActions = currenciesSlice.actions;
-export const currenciesReducer = currenciesSlice.reducer;
+export const dashboardActions = dashboardSlice.actions;
+export const dashboardReducer = dashboardSlice.reducer;

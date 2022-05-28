@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TCoin, TCoinIds, TCurrency, THistoryItem } from '../types';
+import { TCoin, TCoinId, THistoryItem } from '../types';
 
 const baseUrl = 'https://api.coingecko.com/api/v3';
 
-type TCoinDataReq = { currency: TCurrency; id: TCoinIds };
+type TCoinDataReq = { id: TCoinId };
 type TCoinDataRes = TCoin;
 
-type TCoinHistoryReq = { days: number; currency: TCurrency; id: TCoinIds };
+type TCoinHistoryReq = { id: TCoinId; days: number };
 type TCoinHistoryRes = THistoryItem[];
 
 export const cryptoAPI = createApi({
@@ -14,10 +14,10 @@ export const cryptoAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getData: builder.query<TCoinDataRes, TCoinDataReq>({
-      query: ({ currency, id }) => ({
+      query: ({ id }) => ({
         url: 'coins/markets',
         params: {
-          vs_currency: currency,
+          vs_currency: 'usd',
           ids: id,
         },
       }),
@@ -29,10 +29,10 @@ export const cryptoAPI = createApi({
       }),
     }),
     getHistory: builder.query<TCoinHistoryRes, TCoinHistoryReq>({
-      query: ({ currency, id, days }) => ({
+      query: ({ id, days }) => ({
         url: `coins/${id}/market_chart`,
         params: {
-          vs_currency: currency,
+          vs_currency: 'usd',
           days,
         },
       }),

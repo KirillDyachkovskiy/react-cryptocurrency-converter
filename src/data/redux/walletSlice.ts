@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TWallet } from '../types';
+import { TSymbol } from '../types';
 
 type TSetValuePayload = {
-  id: TWallet;
+  id: TSymbol;
   value: number;
 };
 
 type TWalletState = {
-  id: TWallet;
+  id: TSymbol;
   value: number;
 }[];
 
@@ -17,11 +17,11 @@ const initialState: TWalletState = [
     value: 10000,
   },
   {
-    id: 'bitcoin',
+    id: 'btc',
     value: 10000,
   },
   {
-    id: 'ethereum',
+    id: 'eth',
     value: 10000,
   },
 ];

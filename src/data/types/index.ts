@@ -1,15 +1,22 @@
-export type TCurrency = 'usd';
-export type TCoinIds = 'bitcoin' | 'ethereum';
-export type TWallet = TCurrency | TCoinIds;
-export type TSymbol = 'usd' | 'btc' | 'eth';
+export enum TCoinId {
+  btc = 'bitcoin',
+  eth = 'ethereum',
+}
 
+export type TCoinSymbol = keyof typeof TCoinId;
 export type TDays = 1 | 7 | 14 | 30;
 
+export type TSymbol = TCoinSymbol | 'usd';
+
 export type TCoin = {
-  id: TCoinIds;
-  symbol: TSymbol;
+  symbol: TCoinSymbol;
   price: number;
   dynamics: number;
+};
+
+export type TWalletItem = {
+  id: TSymbol;
+  value: number;
 };
 
 export type THistoryItem = [number, number];

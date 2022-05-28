@@ -10,10 +10,13 @@ import {
   Tooltip,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { useGetHistoryQuery } from '../../../data/redux/cryptoAPI';
-import { selectChart } from '../../../data/redux';
 
+import { TCoinId } from '../../../data/types';
+
+import { useGetHistoryQuery } from '../../../data/redux/cryptoAPI';
 import { useAppSelector } from '../../hooks';
+
+import { selectChart } from '../../../data/redux';
 
 import { Preloader } from '../../ui';
 
@@ -58,15 +61,14 @@ const options = {
 };
 
 function Chart() {
-  const { days, id } = useAppSelector(selectChart);
+  const { days, symbol } = useAppSelector(selectChart);
 
-  const borderColor = id === 'bitcoin' ? 'rgb(234,119,54)' : 'rgb(98,70,136)';
+  const borderColor = symbol === 'btc' ? 'rgb(234,119,54)' : 'rgb(98,70,136)';
   const backgroundColor =
-    id === 'bitcoin' ? 'rgba(234,119,54,0.7)' : 'rgba(98,70,136,0.7)';
+    symbol === 'btc' ? 'rgba(234,119,54,0.7)' : 'rgba(98,70,136,0.7)';
 
   const { data: history, isFetching } = useGetHistoryQuery({
-    currency: 'usd',
-    id,
+    id: TCoinId[symbol],
     days,
   });
 
@@ -93,7 +95,7 @@ function Chart() {
     labels,
     datasets: [
       {
-        label: id,
+        label: symbol,
         data,
         fill: true,
         borderColor,

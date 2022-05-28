@@ -8,7 +8,7 @@
   gap: 25px;
 
   width: 380px;
-  height: 510px;
+  height: fit-content;
   @include wrapper;
 
   &__icon {

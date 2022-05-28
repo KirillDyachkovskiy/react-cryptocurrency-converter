@@ -29,9 +29,9 @@ const daysArray = [
 function Daysbar() {
   const { days: currentDays } = useAppSelector(selectChart);
 
-  const { setDays } = useActions();
+  const { setChartDays } = useActions();
 
-  const setCurrentDays = (days: TDays) => setDays({ days });
+  const setCurrentDays = (days: TDays) => setChartDays({ days });
 
   return (
     <div className={s.daysbar}>

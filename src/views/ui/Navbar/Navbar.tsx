@@ -28,7 +28,7 @@ function Navbar({ items }: ISidebar) {
               to={path}
             >
               <Icon name={icon} className={s.navbar__icon} />
-              {label}
+              <span>{label}</span>
             </NavLink>
           </li>
         ))}
