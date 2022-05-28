@@ -8,6 +8,7 @@
   border: none;
   width: 100%;
   box-sizing: border-box;
+  transition: all 0.6s;
 
   &:focus {
     outline: none;
@@ -16,5 +17,9 @@
 
   &::placeholder {
     color: $input-placeholder;
+  }
+
+  &:hover {
+    color: $active;
   }
 }

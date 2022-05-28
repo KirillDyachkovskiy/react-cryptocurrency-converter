@@ -113,8 +113,9 @@ $radiobutton-label-active-color: rgba(76, 76, 102, 0.5);
   background: linear-gradient(113.91deg, $active 0%, $dark 82.9%);
 }
 
-@mixin wrapper($border-radius: 12px, $border-width: 1px) {
+@mixin wrapper($border-radius: 8px, $border-width: 1px, $border-color: $border) {
+  box-sizing: border-box;
+  background-color: $light;
   border: $border-width solid $border;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: $border-radius;
 }

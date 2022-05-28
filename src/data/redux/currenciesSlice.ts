@@ -49,7 +49,7 @@ const initialState: TCurrenciesState = {
   ],
   from: {
     symbol: 'usd',
-    value: 0,
+    value: 100,
   },
   to: [
     {

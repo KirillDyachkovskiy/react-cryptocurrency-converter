@@ -45,6 +45,7 @@ function ConverterItem({
       {onChange ? (
         <Input
           id='fromValue'
+          value={String(value)}
           onChange={handleChange}
           placeholder='from value'
         />
