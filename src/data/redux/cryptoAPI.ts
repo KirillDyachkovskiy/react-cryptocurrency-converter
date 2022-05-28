@@ -24,7 +24,6 @@ export const cryptoAPI = createApi({
       transformResponse: ([coin]) => ({
         id: coin.id,
         symbol: coin.symbol,
-        image: coin.image,
         price: coin.current_price,
         dynamics: coin.price_change_percentage_24h,
       }),
@@ -42,7 +41,5 @@ export const cryptoAPI = createApi({
     }),
   }),
 });
-
-// https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=14
 
 export const { useGetDataQuery, useGetHistoryQuery } = cryptoAPI;

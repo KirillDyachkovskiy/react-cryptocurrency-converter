@@ -2,6 +2,12 @@
 
 .dashboard {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  &__chart {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
 }

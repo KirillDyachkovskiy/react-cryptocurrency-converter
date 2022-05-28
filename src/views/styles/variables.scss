@@ -39,11 +39,11 @@ $input-placeholder: rgb(150, 150, 150);
   color: $active;
 }
 
-@mixin billet-value() {
+@mixin billet-value($color: $dark) {
   font-weight: 600;
   font-size: 28px;
   text-align: right;
-  color: $dark;
+  color: $color;
   opacity: 0.7;
 }
 
@@ -113,8 +113,8 @@ $radiobutton-label-active-color: rgba(76, 76, 102, 0.5);
   background: linear-gradient(113.91deg, $active 0%, $dark 82.9%);
 }
 
-@mixin wrapper() {
-  border: 1px solid $border;
+@mixin wrapper($border-radius: 12px, $border-width: 1px) {
+  border: $border-width solid $border;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  border-radius: $border-radius;
 }

@@ -1,58 +1,62 @@
+import { RiDashboardFill, RiRefreshFill } from 'react-icons/ri';
 import { FaChevronCircleDown, FaEthereum } from 'react-icons/fa';
 import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
 import { IoIosWallet, IoLogoUsd } from 'react-icons/io';
 import { BsCurrencyBitcoin } from 'react-icons/bs';
 import { SiHiveBlockchain } from 'react-icons/si';
-import { RiDashboardFill } from 'react-icons/ri';
 import { HiChevronDown } from 'react-icons/hi';
 
-import { TWallet } from '../../../data/types';
+import { TSymbol } from '../../../data/types';
 
 export type TSidebarIcon = 'logo' | 'wallet' | 'dashboard';
-type TConverterIcon = 'chevron' | 'bigChevron';
+type TConverterIcon = 'chevron' | 'bigChevron' | 'reload';
 type TTrends = 'trendUp' | 'trendDown';
 
-type TIcons = TWallet | TTrends | TSidebarIcon | TConverterIcon;
+type TIcons = TSymbol | TTrends | TSidebarIcon | TConverterIcon;
 
 interface IImage {
   name: TIcons;
   className?: string;
+  onClick?: () => void;
 }
 
-function Icon({ name, className }: IImage) {
+function Icon({ name, className, onClick }: IImage) {
   switch (name) {
-    case 'bitcoin':
-      return <BsCurrencyBitcoin className={className} />;
+    case 'btc':
+      return <BsCurrencyBitcoin className={className} onClick={onClick} />;
 
-    case 'ethereum':
-      return <FaEthereum className={className} />;
+    case 'eth':
+      return <FaEthereum className={className} onClick={onClick} />;
 
     case 'usd':
-      return <IoLogoUsd className={className} />;
+      return <IoLogoUsd className={className} onClick={onClick} />;
 
     case 'trendDown':
-      return <BiTrendingDown className={className} />;
+      return <BiTrendingDown className={className} onClick={onClick} />;
 
     case 'trendUp':
-      return <BiTrendingUp className={className} />;
+      return <BiTrendingUp className={className} onClick={onClick} />;
 
     case 'bigChevron':
-      return <FaChevronCircleDown className={className} />;
+      return <FaChevronCircleDown className={className} onClick={onClick} />;
+
+    case 'reload':
+      return <RiRefreshFill className={className} onClick={onClick} />;
 
     case 'chevron':
-      return <HiChevronDown className={className} />;
+      return <HiChevronDown className={className} onClick={onClick} />;
 
     case 'logo':
-      return <SiHiveBlockchain className={className} />;
+      return <SiHiveBlockchain className={className} onClick={onClick} />;
 
     case 'wallet':
-      return <IoIosWallet className={className} />;
+      return <IoIosWallet className={className} onClick={onClick} />;
 
     case 'dashboard':
-      return <RiDashboardFill className={className} />;
+      return <RiDashboardFill className={className} onClick={onClick} />;
 
     default:
-      return <IoLogoUsd className={className} />;
+      return <IoLogoUsd className={className} onClick={onClick} />;
   }
 }
 

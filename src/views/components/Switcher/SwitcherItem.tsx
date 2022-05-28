@@ -1,5 +1,4 @@
-import { TCoinIds } from '../../../data/types';
-
+import { TSymbol } from '../../../data/types';
 import { getPercentageDiff } from '../../../helpers';
 
 import Icon from '../../ui/Icon';
@@ -8,15 +7,13 @@ import s from './switcher.module.scss';
 
 interface ISwitcherItem {
   active?: boolean;
-  id: TCoinIds;
   price: number;
-  symbol: string;
+  symbol: TSymbol;
   dynamics: number;
 }
 
 function SwitcherItem({
   active = false,
-  id,
   price,
   symbol,
   dynamics,
@@ -27,7 +24,7 @@ function SwitcherItem({
     <article
       className={`${s.switcherItem} ${active ? s.switcherItem_active : ''}`}
     >
-      <Icon name={id} className={s.switcherItem__icon} />
+      <Icon name={symbol} className={s.switcherItem__icon} />
       <div className={s.switcherItem__info}>
         <p className={s.switcherItem__price}>
           {price}

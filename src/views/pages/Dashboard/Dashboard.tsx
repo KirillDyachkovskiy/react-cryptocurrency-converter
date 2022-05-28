@@ -1,19 +1,27 @@
 import { useTitle } from '../../hooks';
 
 import { ContentLayout } from '../../layouts';
-import { Chart, Daysbar, Switcher } from '../../components';
+import { Chart, Converter, Daysbar, Switcher } from '../../components';
 
 import s from './dashboard.module.scss';
 
-function Dashboard() {
+interface IDashboard {
+  isFetching: boolean;
+  refetch: () => void;
+}
+
+function Dashboard({ refetch, isFetching }: IDashboard) {
   useTitle('Dashboard');
 
   return (
     <ContentLayout title='Dashboard'>
       <main className={s.dashboard}>
-        <Switcher name='currencySwitcher' />
-        <Chart />
-        <Daysbar />
+        <div className={s.dashboard__chart}>
+          <Switcher name='currencySwitcher' />
+          <Chart />
+          <Daysbar />
+        </div>
+        <Converter isFetching={isFetching} refetch={refetch} />
       </main>
     </ContentLayout>
   );

@@ -41,7 +41,7 @@ function Daysbar() {
         setSelected={setCurrentDays}
       >
         {daysArray.map(({ value, label }) => (
-          <Radiobutton value={value}>
+          <Radiobutton key={label} value={value}>
             <p
               className={`${s.daysbar__item} ${
                 currentDays === value ? s.daysbar__item_active : ''

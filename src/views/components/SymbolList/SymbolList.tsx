@@ -31,7 +31,7 @@ function SymbolList({ name, selected, setSelected }: IStatusList) {
             setSelected={onChange(isDropdownVisible)}
           >
             {availableSymbols.map((symbol: TSymbol) => (
-              <Radiobutton value={symbol}>
+              <Radiobutton key={symbol} value={symbol}>
                 <Symbol value={symbol} active={selected === symbol} />
               </Radiobutton>
             ))}

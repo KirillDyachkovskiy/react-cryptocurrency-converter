@@ -20,27 +20,26 @@ function Switcher({ name }: ISwitcher) {
     setCoin({ id });
   };
 
-  const currencies = useAppSelector(selectCurrencies);
+  const { coins } = useAppSelector(selectCurrencies);
 
   return (
     <div className={s.switcher}>
-      {currencies.map(({ id, symbol, price, dynamics }: TCoin) => (
+      {coins.map(({ id, symbol, price, dynamics }: TCoin) => (
         <label
-          key={id}
-          htmlFor={`${name}_${id}`}
+          key={symbol}
+          htmlFor={`${name}_${symbol}`}
           className={s.switcher__option}
         >
           <input
             className={s.switcher__radio}
             type='radio'
-            id={`${name}_${id}`}
+            id={`${name}_${symbol}`}
             name={name}
             checked={selectedId === id}
             onChange={switchCoin(id)}
           />
           <SwitcherItem
             active={selectedId === id}
-            id={id}
             price={price}
             symbol={symbol}
             dynamics={dynamics}

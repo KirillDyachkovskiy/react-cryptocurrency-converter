@@ -7,7 +7,7 @@ export type TDays = 1 | 7 | 14 | 30;
 
 export type TCoin = {
   id: TCoinIds;
-  symbol: string;
+  symbol: TSymbol;
   price: number;
   dynamics: number;
 };
