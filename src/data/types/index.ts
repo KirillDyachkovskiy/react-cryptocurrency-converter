@@ -1,7 +1,7 @@
 export type TCurrency = 'usd';
 export type TCoinIds = 'bitcoin' | 'ethereum';
 export type TWallet = TCurrency | TCoinIds;
-export type TSymbols = 'usd' | 'btc' | 'eth';
+export type TSymbol = 'usd' | 'btc' | 'eth';
 
 export type TDays = 1 | 7 | 14 | 30;
 

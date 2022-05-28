@@ -1,3 +1,4 @@
+export { default as SymbolList } from './SymbolList';
 export { default as Converter } from './Converter';
 export { default as Switcher } from './Switcher';
 export { default as Daysbar } from './Daysbar';

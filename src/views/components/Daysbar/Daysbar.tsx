@@ -5,24 +5,54 @@ import { useActions, useAppSelector } from '../../hooks';
 
 import { Radiobutton, Radiobuttons } from '../../ui';
 
+import s from './daysbar.module.scss';
+
+const daysArray = [
+  {
+    value: 1,
+    label: '1 day',
+  },
+  {
+    value: 7,
+    label: '1 week',
+  },
+  {
+    value: 14,
+    label: '14 days',
+  },
+  {
+    value: 30,
+    label: '1 month',
+  },
+];
+
 function Daysbar() {
   const { days: currentDays } = useAppSelector(selectChart);
 
   const { setDays } = useActions();
 
-  const switchDays = (days: TDays) => setDays({ days });
+  const setCurrentDays = (days: TDays) => setDays({ days });
 
   return (
-    <Radiobuttons<TDays>
-      name='currencyDays'
-      selected={currentDays}
-      setSelected={switchDays}
-    >
-      <Radiobutton label='1 day' value={1} />
-      <Radiobutton label='1 week' value={7} />
-      <Radiobutton label='14 days' value={14} />
-      <Radiobutton label='1 month' value={30} />
-    </Radiobuttons>
+    <div className={s.daysbar}>
+      <Radiobuttons<TDays>
+        name='currencyDays'
+        selected={currentDays}
+        setSelected={setCurrentDays}
+      >
+        {daysArray.map(({ value, label }) => (
+          <Radiobutton value={value}>
+            <p
+              className={`${s.daysbar__item} ${
+                currentDays === value ? s.daysbar__item_active : ''
+              }`}
+            >
+              {label}
+            </p>
+          </Radiobutton>
+        ))}
+      </Radiobuttons>
+    </div>
   );
 }
 

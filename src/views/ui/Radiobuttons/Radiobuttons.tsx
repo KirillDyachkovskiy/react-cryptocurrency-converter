@@ -15,8 +15,10 @@ export default function Radiobuttons<T = string>({
   selected,
   setSelected,
 }: IRadiobuttons<T>) {
+  const onChange = (value: T) => () => setSelected(value);
+
   return (
-    <div className={s.radiobuttons}>
+    <>
       {Children.map(
         children,
         (radiobutton: ReactElement<IRadiobutton<T>>, id: number) => {
@@ -25,24 +27,24 @@ export default function Radiobuttons<T = string>({
           }
 
           const {
-            props: { value, label },
+            props: { value, children: content },
           } = radiobutton;
 
           return (
-            <label htmlFor={`${name}_${id}`} className={s.radiobutton}>
+            <label htmlFor={`${name}_${id}`}>
               <input
-                className={s.radiobutton__radio}
+                className={s.radiobutton}
                 type='radio'
                 id={`${name}_${id}`}
                 name={name}
                 checked={selected === value}
-                onChange={() => setSelected(value)}
+                onChange={onChange(value)}
               />
-              <p className={s.radiobutton__label}>{label}</p>
+              {content}
             </label>
           );
         }
       )}
-    </div>
+    </>
   );
 }

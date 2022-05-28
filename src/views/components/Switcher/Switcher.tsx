@@ -3,7 +3,7 @@ import { selectChart, selectCurrencies } from '../../../data/redux';
 
 import { useActions, useAppSelector } from '../../hooks';
 
-import { Currency } from '../../ui';
+import SwitcherItem from './SwitcherItem';
 
 import s from './switcher.module.scss';
 
@@ -38,7 +38,7 @@ function Switcher({ name }: ISwitcher) {
             checked={selectedId === id}
             onChange={switchCoin(id)}
           />
-          <Currency
+          <SwitcherItem
             active={selectedId === id}
             id={id}
             price={price}

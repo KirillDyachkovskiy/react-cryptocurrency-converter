@@ -1,0 +1,14 @@
+@import '../../styles/variables';
+
+.symbol {
+  @include billet-from;
+  transition: color 0.6s;
+
+  &_active {
+    color: $active;
+  }
+
+  &:hover {
+    @include billet-from-hovered;
+  }
+}

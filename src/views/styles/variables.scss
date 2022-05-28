@@ -4,11 +4,11 @@ $active: rgba(83, 185, 234, 1);
 $grey: rgba(240, 240, 240, 1);
 
 $background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, $light 0%, $grey 100%);
+$border: rgb(225, 225, 225);
 
 $navbar-item-color: rgba(111, 108, 153, 1);
 
-$currency-border: rgb(225, 225, 225);
-$currency-active-shadow: linear-gradient(113.91deg, #40DDFF 0%, rgba(11, 152, 197, 0.0001) 82.9%);
+$switcherItem-active-shadow: linear-gradient(113.91deg, #40DDFF 0%, rgba(11, 152, 197, 0.0001) 82.9%);
 
 $negative-dynamics: rgb(208, 43, 43);
 $positive-dynamics: rgb(71, 150, 42);
@@ -21,7 +21,7 @@ $input-border: rgb(200, 200, 200);
 $input-border-focused: rgb(140, 140, 140);
 $input-placeholder: rgb(150, 150, 150);
 
-@mixin converter-item-type() {
+@mixin billet-type() {
   font-weight: 400;
   font-size: 16px;
   color: $dark;
@@ -29,13 +29,17 @@ $input-placeholder: rgb(150, 150, 150);
   margin-bottom: 7px;
 }
 
-@mixin converter-item-from() {
+@mixin billet-from() {
   font-weight: 600;
   font-size: 28px;
   color: $dark;
 }
 
-@mixin converter-item-value() {
+@mixin billet-from-hovered() {
+  color: $active;
+}
+
+@mixin billet-value() {
   font-weight: 600;
   font-size: 28px;
   text-align: right;
@@ -70,13 +74,13 @@ $input-placeholder: rgb(150, 150, 150);
   opacity: 0.7;
 }
 
-@mixin currency-value($active: $dark) {
+@mixin switcherItem-value($active: $dark) {
   font-weight: 500;
   font-size: 17px;
   color: $active;
 }
 
-@mixin currency-symbol($active: $dark) {
+@mixin switcherItem-symbol($active: $dark) {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 12px;
@@ -84,7 +88,7 @@ $input-placeholder: rgb(150, 150, 150);
   opacity: 0.5;
 }
 
-@mixin currency-dynamics($active: $dark) {
+@mixin switcherItem-dynamics($active: $dark) {
   font-weight: 400;
   font-size: 11px;
   color: $active;
@@ -107,4 +111,10 @@ $radiobutton-label-active-color: rgba(76, 76, 102, 0.5);
 
 @mixin tabed() {
   background: linear-gradient(113.91deg, $active 0%, $dark 82.9%);
+}
+
+@mixin wrapper() {
+  border: 1px solid $border;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }

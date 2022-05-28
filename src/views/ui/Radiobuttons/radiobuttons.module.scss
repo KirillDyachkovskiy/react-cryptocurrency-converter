@@ -1,33 +1,9 @@
 @import "../../styles/variables";
 
-.radiobuttons {
-  display: flex;
-  gap: 10px;
-}
-
 .radiobutton {
-  &__label {
-    cursor: pointer;
-    border-radius: 30px;
-    padding: 10px 17px;
-    transition: color 0.3s ease-in-out;
-
-    @include radiobutton-label;
-  }
-
-  &__radio {
-    clip: rect(0 0 0 0);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    width: 1px;
-
-    &:focus-visible + .radiobutton__label {
-      @include tabed;
-    }
-
-    &:checked + .radiobutton__label {
-      @include radiobutton-label-checked;
-    }
-  }
+  clip: rect(0 0 0 0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
 }

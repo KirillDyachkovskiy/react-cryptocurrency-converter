@@ -1,24 +1,30 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TSymbols } from '../types';
+import { TSymbol } from '../types';
 
 type TSetFromPayload = {
-  id: TSymbols;
+  id: TSymbol;
   value: number;
 };
 
 type TSetToPayload = {
-  id: TSymbols;
+  index: number;
+  id: TSymbol;
+  multiplier: number;
+};
+
+type TAddToPayload = {
+  id: TSymbol;
   multiplier: number;
 };
 
 type TCurrenciesState = {
   from: {
-    id: TSymbols;
+    id: TSymbol;
     value: number;
   };
   to: {
-    id: TSymbols;
+    id: TSymbol;
     multiplier: number;
   }[];
 };
@@ -48,13 +54,25 @@ const convertSlice = createSlice({
     },
     setTo: (
       state: TCurrenciesState,
-      { payload }: PayloadAction<TSetToPayload>
+      { payload: { index, ...newTo } }: PayloadAction<TSetToPayload>
     ) => {
       const matchedId = state.to.findIndex(
-        (toItem: TSetToPayload) => toItem.id === payload.id
+        (toItem: TAddToPayload) => toItem.id === newTo.id
       );
 
-      if (matchedId !== -1) {
+      if (matchedId === -1) {
+        state.to[index] = newTo;
+      }
+    },
+    addTo: (
+      state: TCurrenciesState,
+      { payload }: PayloadAction<TAddToPayload>
+    ) => {
+      const matchedId = state.to.findIndex(
+        (toItem: TAddToPayload) => toItem.id === payload.id
+      );
+
+      if (matchedId === -1) {
         state.to.push(payload);
       } else {
         state.to[matchedId] = payload;

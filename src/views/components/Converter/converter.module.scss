@@ -10,9 +10,7 @@
 
   width: 380px;
   height: 510px;
-  border: 1px solid $dark;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  @include wrapper;
 
   &__chevron {
     color: $active;
@@ -21,7 +19,7 @@
   }
 }
 
-.converterItem {
+.billet {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -32,15 +30,11 @@
   border-radius: 8px;
 
   &__type {
-    @include converter-item-type;
-  }
-
-  &__from {
-    @include converter-item-from;
+    @include billet-type;
   }
 
   &__value {
-    @include converter-item-value;
+    @include billet-value;
     margin-bottom: 10px;
     align-self: flex-end;
   }

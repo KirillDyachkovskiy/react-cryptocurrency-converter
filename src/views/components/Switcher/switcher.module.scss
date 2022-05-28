@@ -20,3 +20,102 @@
     }
   }
 }
+
+.switcherItem {
+  position: relative;
+  height: 75px;
+  width: 190px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 1px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  pointer-events: none;
+  transition: background-color 0.6s, color 0.6s;
+
+  &_active {
+    border: none;
+    background-color: $active;
+
+    .switcherItem__price {
+      @include switcherItem-value($light);
+    }
+
+    .switcherItem__symbol {
+      @include switcherItem-symbol($light);
+    }
+
+    .switcherItem__dynamics {
+      @include switcherItem-dynamics($light);
+    }
+
+    .switcherItem__trend {
+      color: $light;
+    }
+
+    .switcherItem__icon {
+      color: $light;
+    }
+  }
+
+  &__icon {
+    height: 36px;
+    width: 36px;
+    color: $dark;
+  }
+
+  &__info {
+    position: relative;
+    width: 100px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__price {
+    @include switcherItem-value;
+  }
+
+  &__symbol {
+    margin-left: 12px;
+    @include switcherItem-symbol;
+  }
+
+  &__dynamics {
+    align-self: flex-end;
+    @include switcherItem-dynamics;
+
+    &_negative {
+      color: $negative-dynamics;
+    }
+
+    &_positive {
+      color: $positive-dynamics;
+    }
+  }
+
+  &__trend {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 5px;
+    bottom: -7px;
+    color: $dark;
+  }
+
+  &__shadow {
+    width: 150px;
+    height: 75px;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    background: $switcherItem-active-shadow;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+    filter: blur(90.885px);
+    border-radius: 5px;
+  }
+}

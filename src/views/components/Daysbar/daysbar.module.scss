@@ -1,22 +1,19 @@
 @import '../../styles/variables';
 
-.navbar {
+.daysbar {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  gap: 10px;
 
   &__item {
-    display: flex;
-    align-items: center;
     cursor: pointer;
-    @include navbar-item;
+    border-radius: 30px;
+    padding: 10px 17px;
+    transition: all 0.3s ease-in-out;
+
+    @include radiobutton-label;
 
     &_active {
-      color: $navbar-active-item-color;
+      @include radiobutton-label-checked;
     }
-  }
-
-  &__icon {
-    margin-right: 30px;
   }
 }

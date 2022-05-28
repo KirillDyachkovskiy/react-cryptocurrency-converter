@@ -1,9 +1,9 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 import s from './contentLayout.module.scss';
 
 interface IContentLayout {
-  children: ReactElement;
+  children: ReactNode;
   title: string;
 }
 

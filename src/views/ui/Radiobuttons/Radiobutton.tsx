@@ -1,8 +1,12 @@
+import { ReactNode } from 'react';
+
 export interface IRadiobutton<T> {
-  label: string;
+  children: ReactNode;
   value: T;
 }
 
-export default function Radiobutton<T = string>({ label }: IRadiobutton<T>) {
-  return <div>{label}</div>;
+function Radiobutton<T = string>({ children }: IRadiobutton<T>) {
+  return <div>{children}</div>;
 }
+
+export default Radiobutton;
