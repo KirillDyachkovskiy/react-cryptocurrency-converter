@@ -8,19 +8,20 @@ export type TDays = 1 | 7 | 14 | 30;
 
 export type TSymbol = TCoinSymbol | 'usd';
 
-export type TCoin = {
-  symbol: TCoinSymbol;
+export type TBalance = {
+  symbol: TSymbol;
   price: number;
-  dynamics: number;
+};
+
+export type TConverter = {
+  symbol: TSymbol;
+  price: number;
+  value: number;
 };
 
 export type TWalletItem = {
   symbol: TSymbol;
   value: number;
-  multiplier: {
-    balance: number;
-    converter: number;
-  };
+  price: number;
+  dynamics: number;
 };
-
-export type THistoryItem = [number, number];

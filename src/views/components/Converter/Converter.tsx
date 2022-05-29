@@ -14,22 +14,27 @@ interface IConverter {
 }
 
 function Converter({ isFetching, refetch }: IConverter) {
-  const converter = useAppSelector(selectConverter);
+  const {
+    symbol: fromSymbol,
+    price: fromPrice,
+    value: fromValue,
+  } = useAppSelector(selectConverter);
   const wallet = useAppSelector(selectWallet);
-  const { setFromSymbol, setFromValue } = useActions();
+  const { setConverterSymbol, setConverterValue } = useActions();
 
-  const onSelect = (symbol: TSymbol) => setFromSymbol({ symbol });
-  const onChange = (value: number) => setFromValue({ value });
+  const onSelect = (symbol: TSymbol) => setConverterSymbol({ symbol });
+  const onChange = (value: number) => setConverterValue({ value });
 
   const convertTo = wallet.filter(
-    ({ symbol }: TWalletItem) => symbol !== converter.symbol
+    ({ symbol }: TWalletItem) => symbol !== fromSymbol
   );
 
   return (
     <section className={s.converter}>
       <ConverterItem
         type='from'
-        {...converter}
+        symbol={fromSymbol}
+        value={fromValue}
         onSelect={onSelect}
         onChange={onChange}
       />
@@ -45,12 +50,12 @@ function Converter({ isFetching, refetch }: IConverter) {
           onClick={refetch}
         />
       )}
-      {convertTo.map(({ symbol, multiplier }: TWalletItem) => (
+      {convertTo.map(({ symbol, price: toPrice }: TWalletItem) => (
         <ConverterItem
           key={symbol}
           symbol={symbol}
           type='to'
-          value={converter.value * multiplier.converter}
+          value={(fromValue * fromPrice) / toPrice}
         />
       ))}
     </section>

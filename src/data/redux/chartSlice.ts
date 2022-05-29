@@ -2,14 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TCoinSymbol, TDays } from '../types';
 
-type TSetDaysPayload = {
-  days: TDays;
-};
-
-type TSetCoinPayload = {
-  symbol: TCoinSymbol;
-};
-
 type TChartState = {
   symbol: TCoinSymbol;
   days: TDays;
@@ -18,6 +10,14 @@ type TChartState = {
 const initialState: TChartState = {
   symbol: 'btc',
   days: 14,
+};
+
+type TSetDaysPayload = {
+  days: TDays;
+};
+
+type TSetCoinPayload = {
+  symbol: TCoinSymbol;
 };
 
 const chartSlice = createSlice({

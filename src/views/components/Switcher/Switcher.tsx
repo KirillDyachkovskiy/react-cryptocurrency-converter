@@ -1,5 +1,5 @@
-import { TCoin, TCoinSymbol } from '../../../data/types';
-import { selectChart, selectCoins } from '../../../data/redux';
+import { TCoinSymbol, TWalletItem } from '../../../data/types';
+import { selectChart, selectWallet } from '../../../data/redux';
 
 import { useActions, useAppSelector } from '../../hooks';
 
@@ -20,11 +20,15 @@ function Switcher({ name }: ISwitcher) {
     setChartSymbol({ symbol });
   };
 
-  const coins = useAppSelector(selectCoins);
+  const wallet = useAppSelector(selectWallet);
+
+  const onlyCoins = wallet.filter(
+    ({ symbol }: TWalletItem) => symbol !== 'usd'
+  );
 
   return (
     <div className={s.switcher}>
-      {coins.map(({ symbol, price, dynamics }: TCoin) => (
+      {onlyCoins.map(({ symbol, price, dynamics }: TWalletItem) => (
         <label
           key={symbol}
           htmlFor={`${name}_${symbol}`}
@@ -36,7 +40,7 @@ function Switcher({ name }: ISwitcher) {
             id={`${name}_${symbol}`}
             name={name}
             checked={selected === symbol}
-            onChange={switchCoin(symbol)}
+            onChange={switchCoin(symbol as TCoinSymbol)}
           />
           <SwitcherItem
             active={selected === symbol}

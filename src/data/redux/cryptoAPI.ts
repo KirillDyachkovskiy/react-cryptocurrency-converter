@@ -1,13 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TCoin, TCoinId, THistoryItem } from '../types';
+import {
+  TCoinDataReq,
+  TCoinDataRes,
+  TCoinHistoryReq,
+  TCoinHistoryRes,
+} from '../types/api';
 
 const baseUrl = 'https://api.coingecko.com/api/v3';
-
-type TCoinDataReq = { id: TCoinId };
-type TCoinDataRes = TCoin;
-
-type TCoinHistoryReq = { id: TCoinId; days: number };
-type TCoinHistoryRes = THistoryItem[];
 
 export const cryptoAPI = createApi({
   reducerPath: 'cryptoAPI',

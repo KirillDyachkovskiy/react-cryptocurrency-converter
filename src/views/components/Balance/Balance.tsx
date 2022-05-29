@@ -1,4 +1,4 @@
-import { selectBalance, selectBalanceSymbol } from '../../../data/redux';
+import { selectBalance, selectBalanceValue } from '../../../data/redux';
 
 import { useAppSelector } from '../../hooks';
 
@@ -8,8 +8,8 @@ import { Icon } from '../../ui';
 import s from './balance.module.scss';
 
 function Balance() {
-  const balance = useAppSelector(selectBalance);
-  const symbol = useAppSelector(selectBalanceSymbol);
+  const { symbol } = useAppSelector(selectBalance);
+  const balance = useAppSelector(selectBalanceValue);
 
   return (
     <section className={s.balance}>

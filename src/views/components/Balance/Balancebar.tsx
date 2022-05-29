@@ -1,12 +1,12 @@
 import { useActions, useAppSelector } from '../../hooks';
 import { TSymbol } from '../../../data/types';
 
-import { selectBalanceSymbol, selectCurrencies } from '../../../data/redux';
+import { selectBalance, selectCurrencies } from '../../../data/redux';
 
 import { Radiobar } from '../../ui';
 
 function Balancebar() {
-  const balanceSymbol = useAppSelector(selectBalanceSymbol);
+  const { symbol: currentSymbol } = useAppSelector(selectBalance);
   const currencies = useAppSelector(selectCurrencies);
 
   const balancebarItems = currencies.map((symbol: TSymbol) => ({
@@ -14,14 +14,14 @@ function Balancebar() {
     value: symbol,
   }));
 
-  const { setBalanceSymbol } = useActions();
+  const { setBalance } = useActions();
 
-  const setCurrentDays = (symbol: TSymbol) => setBalanceSymbol({ symbol });
+  const setCurrentSymbol = (symbol: TSymbol) => setBalance({ symbol });
 
   return (
     <Radiobar<TSymbol>
-      value={balanceSymbol}
-      onChange={setCurrentDays}
+      value={currentSymbol}
+      onChange={setCurrentSymbol}
       items={balancebarItems}
     />
   );

@@ -1,5 +1,5 @@
 import { configureStore, createSelector } from '@reduxjs/toolkit';
-import { TWalletItem } from '../types';
+import { TBalance, TWalletItem } from '../types';
 import { cryptoAPI } from './cryptoAPI';
 import { dashboardReducer } from './dashboardSlice';
 import { chartReducer } from './chartSlice';
@@ -16,20 +16,19 @@ const store = configureStore({
 
 export type TRootState = ReturnType<typeof store.getState>;
 
-export const selectCurrencies = (state: TRootState) =>
-  state.dashboard.availableCurrencies;
 export const selectConverter = (state: TRootState) => state.dashboard.converter;
-export const selectWallet = (state: TRootState) => state.dashboard.wallet;
-export const selectCoins = (state: TRootState) => state.dashboard.coins;
 
-export const selectBalanceSymbol = (state: TRootState) =>
-  state.dashboard.balanceSymbol;
-export const selectBalance = createSelector(
-  [selectWallet],
-  (walletItems: TWalletItem[]) =>
+export const selectWallet = (state: TRootState) => state.dashboard.wallet;
+export const selectCurrencies = (state: TRootState) =>
+  state.dashboard.wallet.map(({ symbol }: TWalletItem) => symbol);
+
+export const selectBalance = (state: TRootState) => state.dashboard.balance;
+export const selectBalanceValue = createSelector(
+  [selectWallet, selectBalance],
+  (walletItems: TWalletItem[], { price: toPrice }: TBalance) =>
     walletItems.reduce(
-      (accum: number, walletItem: TWalletItem) =>
-        accum + walletItem.value / walletItem.multiplier.balance,
+      (accum: number, { value: fromValue, price: fromPrice }: TWalletItem) =>
+        accum + (fromValue / toPrice) * fromPrice,
       0
     )
 );
