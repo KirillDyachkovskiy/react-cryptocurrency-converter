@@ -1,17 +1,7 @@
-import {
-  CategoryScale,
-  Chart as ChartJS,
-  Filler,
-  Legend,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-} from 'chart.js';
+import { Chart as ChartJS, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-import { TCoinId } from '../../../data/types';
+import { EBorderColors, EColors, TCoinId } from '../../../data/types';
 
 import { useGetHistoryQuery } from '../../../data/redux/cryptoAPI';
 import { useAppSelector } from '../../hooks';
@@ -22,16 +12,7 @@ import { Preloader } from '../../ui';
 
 import s from './chart.module.scss';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
-);
+ChartJS.register(...registerables);
 
 const options = {
   responsive: true,
@@ -63,11 +44,11 @@ const options = {
 function Chart() {
   const { days, symbol } = useAppSelector(selectChart);
 
-  const borderColor = symbol === 'btc' ? 'rgb(234,119,54)' : 'rgb(98,70,136)';
-  const backgroundColor =
-    symbol === 'btc' ? 'rgba(234,119,54,0.7)' : 'rgba(98,70,136,0.7)';
-
-  const { data: history, isFetching } = useGetHistoryQuery({
+  const {
+    data: history,
+    isFetching,
+    isSuccess,
+  } = useGetHistoryQuery({
     id: TCoinId[symbol],
     days,
   });
@@ -80,7 +61,11 @@ function Chart() {
     );
   }
 
-  const labels = history?.map((coin) => {
+  if (!isSuccess) {
+    return null;
+  }
+
+  const labels = history.map((coin) => {
     const date = new Date(coin[0]);
 
     return date.toLocaleDateString('en-US', {
@@ -89,7 +74,9 @@ function Chart() {
       month: 'long',
     });
   });
-  const data = history?.map((mark) => mark[1]);
+  const data = history.map((mark) => mark[1]);
+  const backgroundColor = EColors[symbol];
+  const borderColor = EBorderColors[symbol];
 
   const line = {
     labels,
@@ -98,8 +85,8 @@ function Chart() {
         label: symbol,
         data,
         fill: true,
-        borderColor,
         backgroundColor,
+        borderColor,
         pointRadius: 0,
         lineTension: 1,
         radius: 100,

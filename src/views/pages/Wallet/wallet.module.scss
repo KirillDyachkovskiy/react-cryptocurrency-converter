@@ -1,5 +1,8 @@
 @import "../../styles/variables";
 
 .wallet {
-
+  &__stats {
+    display: flex;
+    gap: 20px;
+  }
 }

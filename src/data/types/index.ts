@@ -21,7 +21,19 @@ export type TConverter = {
 
 export type TWalletItem = {
   symbol: TSymbol;
-  value: number;
+  count: number;
   price: number;
   dynamics: number;
 };
+
+export enum EColors {
+  btc = 'rgba(234,119,54,0.7)',
+  eth = 'rgba(98,70,136,0.7)',
+  usd = 'rgba(54,164,80,0.7)',
+}
+
+export enum EBorderColors {
+  btc = 'rgba(234,119,54,1)',
+  eth = 'rgba(98,70,136,1)',
+  usd = 'rgba(54,164,80,1)',
+}

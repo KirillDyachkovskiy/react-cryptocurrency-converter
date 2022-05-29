@@ -22,15 +22,26 @@ export const selectWallet = (state: TRootState) => state.dashboard.wallet;
 export const selectCurrencies = (state: TRootState) =>
   state.dashboard.wallet.map(({ symbol }: TWalletItem) => symbol);
 
-export const selectBalance = (state: TRootState) => state.dashboard.balance;
-export const selectBalanceValue = createSelector(
-  [selectWallet, selectBalance],
-  (walletItems: TWalletItem[], { price: toPrice }: TBalance) =>
-    walletItems.reduce(
-      (accum: number, { value: fromValue, price: fromPrice }: TWalletItem) =>
-        accum + (fromValue / toPrice) * fromPrice,
+export const selectBalanceOptions = (state: TRootState) =>
+  state.dashboard.balance;
+
+export const selectBalance = createSelector(
+  [selectWallet, selectBalanceOptions],
+  (walletItems: TWalletItem[], balance: TBalance) => {
+    const { price: toPrice, symbol } = balance;
+
+    const totalBalance = walletItems.reduce(
+      (accum: number, { count: fromCount, price: fromPrice }: TWalletItem) =>
+        accum + (fromCount / toPrice) * fromPrice,
       0
-    )
+    );
+
+    return {
+      symbol,
+      totalBalance,
+      accounts: walletItems,
+    };
+  }
 );
 
 export const selectChart = (state: TRootState) => state.chart;

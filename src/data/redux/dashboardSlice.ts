@@ -21,19 +21,19 @@ const initialState: TDashboardState = {
   wallet: [
     {
       symbol: 'usd',
-      value: 10000,
+      count: 10000,
       price: 1,
       dynamics: 0,
     },
     {
       symbol: 'btc',
+      count: 1,
       price: 1,
       dynamics: 0,
-      value: 1,
     },
     {
       symbol: 'eth',
-      value: 3,
+      count: 3,
       price: 1,
       dynamics: 0,
     },
