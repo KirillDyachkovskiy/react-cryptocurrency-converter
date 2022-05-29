@@ -56,14 +56,12 @@
     }
 
     .switcherItem__icon {
-      color: $light;
+      @include currency-icon($light);
     }
   }
 
   &__icon {
-    height: 36px;
-    width: 36px;
-    color: $dark;
+    @include currency-icon;
   }
 
   &__info {

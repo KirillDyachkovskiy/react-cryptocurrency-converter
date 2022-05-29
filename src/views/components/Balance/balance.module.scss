@@ -1,10 +1,31 @@
 @import '../../styles/variables';
 
 .balance {
-  width: 960px;
-  height: 420px;
-  padding: 20px;
+  width: 400px;
+  height: 250px;
+  padding: 30px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include wrapper;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    @include currency-icon;
+  }
+
+  &__value {
+    @include balance;
+
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

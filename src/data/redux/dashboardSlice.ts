@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TCoin, TSymbol } from '../types';
+import { TCoin, TSymbol, TWalletItem } from '../types';
 import { getMultiplier } from '../helpers';
 
 type TSetDataPayload = {
@@ -17,21 +17,17 @@ type TSetFromValuePayload = {
   value: number;
 };
 
-type TToItem = {
+type TFromItem = {
   symbol: TSymbol;
-  multiplier: number;
+  value: number;
 };
 
 type TDashboardState = {
   coins: TCoin[];
   availableCurrencies: TSymbol[];
-  converter: {
-    from: {
-      symbol: TSymbol;
-      value: number;
-    };
-    to: TToItem[];
-  };
+  balanceSymbol: TSymbol;
+  converter: TFromItem;
+  wallet: TWalletItem[];
 };
 
 const initialState: TDashboardState = {
@@ -48,22 +44,37 @@ const initialState: TDashboardState = {
     },
   ],
   availableCurrencies: ['btc', 'eth', 'usd'],
+  balanceSymbol: 'usd',
   converter: {
-    from: {
-      symbol: 'usd',
-      value: 100,
-    },
-    to: [
-      {
-        symbol: 'btc',
-        multiplier: 1,
-      },
-      {
-        symbol: 'eth',
-        multiplier: 1,
-      },
-    ],
+    symbol: 'usd',
+    value: 100,
   },
+  wallet: [
+    {
+      symbol: 'usd',
+      value: 10000,
+      multiplier: {
+        balance: 1,
+        converter: 1,
+      },
+    },
+    {
+      symbol: 'btc',
+      value: 1,
+      multiplier: {
+        balance: 1,
+        converter: 1,
+      },
+    },
+    {
+      symbol: 'eth',
+      value: 3,
+      multiplier: {
+        balance: 1,
+        converter: 1,
+      },
+    },
+  ],
 };
 
 const dashboardSlice = createSlice({
@@ -81,33 +92,58 @@ const dashboardSlice = createSlice({
         }
       });
 
-      state.converter.to.forEach((toItem: TToItem) => {
-        if (toItem.symbol === symbol) {
-          toItem.multiplier = 1 / price;
+      state.wallet.forEach((walletItem: TWalletItem) => {
+        if (walletItem.symbol === symbol) {
+          walletItem.multiplier.balance = 1 / price;
+          walletItem.multiplier.converter = 1 / price;
         }
+      });
+    },
+    setBalanceSymbol: (
+      state: TDashboardState,
+      { payload: { symbol: newSymbol } }: PayloadAction<TSetFromSymbolPayload>
+    ) => {
+      state.balanceSymbol = newSymbol;
+
+      const fromPriceInUSD =
+        state.coins.find((coin: TCoin) => coin.symbol === newSymbol)?.price ||
+        1;
+
+      state.wallet = state.wallet.map((walletItem: TWalletItem) => {
+        const toPriceInUSD =
+          state.coins.find((coin: TCoin) => coin.symbol === walletItem.symbol)
+            ?.price || 1;
+
+        return {
+          ...walletItem,
+          multiplier: {
+            ...walletItem.multiplier,
+            balance: getMultiplier(fromPriceInUSD, toPriceInUSD),
+          },
+        };
       });
     },
     setFromSymbol: (
       state: TDashboardState,
       { payload: { symbol: newSymbol } }: PayloadAction<TSetFromSymbolPayload>
     ) => {
-      const availableSymbols = state.availableCurrencies.filter(
-        (symbol: TSymbol) => symbol !== newSymbol
-      );
-
-      state.converter.from.symbol = newSymbol;
+      state.converter.symbol = newSymbol;
 
       const fromPriceInUSD =
         state.coins.find((coin: TCoin) => coin.symbol === newSymbol)?.price ||
         1;
 
-      state.converter.to = availableSymbols.map((symbol: TSymbol) => {
+      state.wallet = state.wallet.map((walletItem: TWalletItem) => {
         const toPriceInUSD =
-          state.coins.find((coin: TCoin) => coin.symbol === symbol)?.price || 1;
+          state.coins.find((coin: TCoin) => coin.symbol === walletItem.symbol)
+            ?.price || 1;
 
         return {
-          symbol,
-          multiplier: getMultiplier(fromPriceInUSD, toPriceInUSD),
+          ...walletItem,
+          multiplier: {
+            ...walletItem.multiplier,
+            converter: getMultiplier(fromPriceInUSD, toPriceInUSD),
+          },
         };
       });
     },
@@ -115,7 +151,7 @@ const dashboardSlice = createSlice({
       state: TDashboardState,
       { payload: { value } }: PayloadAction<TSetFromValuePayload>
     ) => {
-      state.converter.from.value = value;
+      state.converter.value = value;
     },
   },
 });

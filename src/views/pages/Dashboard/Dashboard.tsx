@@ -1,7 +1,8 @@
 import { useTitle } from '../../hooks';
 
 import { ContentLayout } from '../../layouts';
-import { Chart, Converter, Daysbar, Switcher } from '../../components';
+import { Chart, Converter, Switcher } from '../../components';
+import Daysbar from '../../components/Daysbar';
 
 import s from './dashboard.module.scss';
 

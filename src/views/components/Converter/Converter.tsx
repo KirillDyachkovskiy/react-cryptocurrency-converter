@@ -1,12 +1,12 @@
-import { selectConverter } from '../../../data/redux';
-import { TSymbol } from '../../../data/types';
+import { selectConverter, selectWallet } from '../../../data/redux';
+import { TSymbol, TWalletItem } from '../../../data/types';
 
 import { useActions, useAppSelector } from '../../hooks';
 
+import ConverterItem from './ConverterItem';
 import { Icon } from '../../ui';
 
 import s from './converter.module.scss';
-import ConverterItem from './ConverterItem';
 
 interface IConverter {
   isFetching: boolean;
@@ -14,17 +14,22 @@ interface IConverter {
 }
 
 function Converter({ isFetching, refetch }: IConverter) {
-  const { from, to } = useAppSelector(selectConverter);
+  const converter = useAppSelector(selectConverter);
+  const wallet = useAppSelector(selectWallet);
   const { setFromSymbol, setFromValue } = useActions();
 
   const onSelect = (symbol: TSymbol) => setFromSymbol({ symbol });
   const onChange = (value: number) => setFromValue({ value });
 
+  const convertTo = wallet.filter(
+    ({ symbol }: TWalletItem) => symbol !== converter.symbol
+  );
+
   return (
     <section className={s.converter}>
       <ConverterItem
         type='from'
-        {...from}
+        {...converter}
         onSelect={onSelect}
         onChange={onChange}
       />
@@ -40,12 +45,12 @@ function Converter({ isFetching, refetch }: IConverter) {
           onClick={refetch}
         />
       )}
-      {to.map(({ symbol, multiplier }) => (
+      {convertTo.map(({ symbol, multiplier }: TWalletItem) => (
         <ConverterItem
           key={symbol}
           symbol={symbol}
           type='to'
-          value={from.value * multiplier}
+          value={converter.value * multiplier.converter}
         />
       ))}
     </section>

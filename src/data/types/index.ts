@@ -15,8 +15,12 @@ export type TCoin = {
 };
 
 export type TWalletItem = {
-  id: TSymbol;
+  symbol: TSymbol;
   value: number;
+  multiplier: {
+    balance: number;
+    converter: number;
+  };
 };
 
 export type THistoryItem = [number, number];

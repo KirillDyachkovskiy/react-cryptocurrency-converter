@@ -1,6 +1,7 @@
 export { default as ClickAwayListener } from './ClickAwayListener';
 export { Radiobutton, Radiobuttons } from './Radiobuttons';
 export { default as Preloader } from './Preloader';
+export { default as Radiobar } from './Radiobar';
 export { default as Dropdown } from './Dropdown';
 export { default as Checkbox } from './Checkbox';
 export { default as Symbol } from './Symbol';

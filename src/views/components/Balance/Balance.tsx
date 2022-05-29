@@ -1,16 +1,23 @@
+import { selectBalance, selectBalanceSymbol } from '../../../data/redux';
+
 import { useAppSelector } from '../../hooks';
-import { selectBalance } from '../../../data/redux';
+
+import Balancebar from './Balancebar';
+import { Icon } from '../../ui';
 
 import s from './balance.module.scss';
-import { Icon } from '../../ui';
 
 function Balance() {
   const balance = useAppSelector(selectBalance);
+  const symbol = useAppSelector(selectBalanceSymbol);
 
   return (
     <section className={s.balance}>
-      <Icon name='usd' />
-      <p className={s.balance__value}>{balance}</p>
+      <p className={s.balance__info}>
+        <Icon name={symbol} className={s.balance__icon} />
+        <span className={s.balance__value}>{balance}</span>
+      </p>
+      <Balancebar />
     </section>
   );
 }

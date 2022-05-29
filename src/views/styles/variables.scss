@@ -21,6 +21,21 @@ $input-border: rgb(200, 200, 200);
 $input-border-focused: rgb(140, 140, 140);
 $input-placeholder: rgb(150, 150, 150);
 
+
+@mixin currency-icon($icon-color: $dark) {
+  height: 36px;
+  width: 36px;
+  color: $icon-color;
+}
+
+@mixin balance() {
+  font-weight: 700;
+  font-size: 30px;
+  color: $dark;
+  opacity: 0.9;
+}
+
+
 @mixin billet-type() {
   font-weight: 400;
   font-size: 16px;
