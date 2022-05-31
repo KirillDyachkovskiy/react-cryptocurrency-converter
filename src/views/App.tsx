@@ -46,6 +46,10 @@ function App() {
       <Route path='/' element={<MainLayout />}>
         <Route path='*' element={<Navigate to='/not-found' />} />
         <Route
+          path='react-cryptocurrency-converter/'
+          element={<Navigate to='/' />}
+        />
+        <Route
           index
           element={<Dashboard isFetching={isFetching} refetch={refetch} />}
         />
