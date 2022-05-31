@@ -3,23 +3,31 @@
 .button {
   width: 100%;
   background-color: inherit;
+  border: 0;
   appearance: none;
   cursor: pointer;
-  padding: 10px;
   transition: all 0.1s ease-in-out;
   white-space: nowrap;
   font-weight: 600;
   font-size: 18px;
   color: $dark;
-  border: 1px solid $border;
-  border-radius: 8px;
 
-  &:hover:not([disabled]),
-  &:active:not([disabled]),
-  &:focus-visible:not([disabled]) {
-    box-shadow: 0 2px 6px -2px $active;
-    color: $active;
-    border: 1px solid $active;
+  &_variant_air {
+    background: none;
+  }
+
+  &_variant_button {
+    border: 1px solid $border;
+    border-radius: 8px;
+    padding: 10px;
+
+    &:hover:not([disabled]),
+    &:active:not([disabled]),
+    &:focus-visible:not([disabled]) {
+      box-shadow: 0 2px 6px -2px $active;
+      color: $active;
+      border: 1px solid $active;
+    }
   }
 
   &:active:not([disabled]) {
@@ -34,5 +42,4 @@
     cursor: not-allowed;
     filter: grayscale(80%);
   }
-
 }

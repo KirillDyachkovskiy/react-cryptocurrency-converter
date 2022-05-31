@@ -1,23 +1,26 @@
 import { MouseEventHandler, ReactNode } from 'react';
+
 import s from './button.module.scss';
 
 interface IButton {
   children: ReactNode;
+  variant?: 'button' | 'air';
+  htmlType?: 'button' | 'submit';
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  htmlType?: 'button' | 'submit';
 }
 
-export default function Button({
+function Button({
   children,
-  onClick,
-  disabled = false,
+  variant = 'button',
   htmlType = 'button',
+  disabled = false,
+  onClick,
 }: IButton) {
   return (
     <button
-      className={s.button}
       type={htmlType === 'button' ? 'button' : 'submit'}
+      className={`${s.button} ${s[`button_variant_${variant}`]}`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -25,3 +28,5 @@ export default function Button({
     </button>
   );
 }
+
+export default Button;

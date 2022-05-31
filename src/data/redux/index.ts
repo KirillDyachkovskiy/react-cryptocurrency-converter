@@ -1,8 +1,9 @@
 import { configureStore, createSelector } from '@reduxjs/toolkit';
-import { TBalance, TWalletItem } from '../types';
+import { TBalance, TBalanceItem, TWalletItem } from '../types';
 import { cryptoAPI } from './cryptoAPI';
 import { dashboardReducer } from './dashboardSlice';
 import { chartReducer } from './chartSlice';
+import sum from '../helpers/sum';
 
 const store = configureStore({
   reducer: {
@@ -27,19 +28,20 @@ export const selectBalanceOptions = (state: TRootState) =>
 
 export const selectBalance = createSelector(
   [selectWallet, selectBalanceOptions],
-  (walletItems: TWalletItem[], balance: TBalance) => {
-    const { price: toPrice, symbol } = balance;
+  (walletItems: TWalletItem[], { price: toPrice, symbol }: TBalance) => {
+    const accounts = walletItems.map((currency: TWalletItem) => ({
+      ...currency,
+      balance: (currency.count / toPrice) * currency.price,
+    }));
 
-    const totalBalance = walletItems.reduce(
-      (accum: number, { count: fromCount, price: fromPrice }: TWalletItem) =>
-        accum + (fromCount / toPrice) * fromPrice,
-      0
+    const totalBalance = sum(
+      accounts.map(({ balance }: TBalanceItem) => balance)
     );
 
     return {
       symbol,
       totalBalance,
-      accounts: walletItems,
+      accounts,
     };
   }
 );

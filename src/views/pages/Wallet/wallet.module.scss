@@ -1,8 +1,12 @@
 @import "../../styles/variables";
 
 .wallet {
-  &__stats {
+  display: flex;
+  gap: 20px;
+
+  &__card {
     display: flex;
+    flex-direction: column;
     gap: 20px;
   }
 }

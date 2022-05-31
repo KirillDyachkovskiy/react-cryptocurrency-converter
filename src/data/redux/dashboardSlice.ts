@@ -46,11 +46,20 @@ type TSetDataPayload = {
   dynamics: number;
 };
 
-type TSetFromSymbolPayload = {
+type TSetAccountValuePayload = {
+  symbol: TSymbol;
+  count: number;
+};
+
+type TBalanceSymbolPayload = {
   symbol: TSymbol;
 };
 
-type TSetFromValuePayload = {
+type TConverterSymbolPayload = {
+  symbol: TSymbol;
+};
+
+type TSetConverterValuePayload = {
   value: number;
 };
 
@@ -69,9 +78,9 @@ const dashboardSlice = createSlice({
         }
       });
     },
-    setBalance: (
+    setBalanceSymbol: (
       state: TDashboardState,
-      { payload: { symbol: newSymbol } }: PayloadAction<TSetFromSymbolPayload>
+      { payload: { symbol: newSymbol } }: PayloadAction<TBalanceSymbolPayload>
     ) => {
       const newPrice =
         state.wallet.find(({ symbol }: TWalletItem) => symbol === newSymbol)
@@ -80,9 +89,23 @@ const dashboardSlice = createSlice({
       state.balance.symbol = newSymbol;
       state.balance.price = newPrice;
     },
+    setAccountValue: (
+      state: TDashboardState,
+      {
+        payload: { symbol: newSymbol, count: newCount },
+      }: PayloadAction<TSetAccountValuePayload>
+    ) => {
+      const matchedAccount = state.wallet.find(
+        ({ symbol }: TWalletItem) => symbol === newSymbol
+      );
+
+      if (matchedAccount) {
+        matchedAccount.count = newCount;
+      }
+    },
     setConverterSymbol: (
       state: TDashboardState,
-      { payload: { symbol: newSymbol } }: PayloadAction<TSetFromSymbolPayload>
+      { payload: { symbol: newSymbol } }: PayloadAction<TConverterSymbolPayload>
     ) => {
       const newPrice =
         state.wallet.find(({ symbol }: TWalletItem) => symbol === newSymbol)
@@ -93,7 +116,7 @@ const dashboardSlice = createSlice({
     },
     setConverterValue: (
       state: TDashboardState,
-      { payload: { value } }: PayloadAction<TSetFromValuePayload>
+      { payload: { value } }: PayloadAction<TSetConverterValuePayload>
     ) => {
       state.converter.value = value;
     },

@@ -26,6 +26,8 @@ export type TWalletItem = {
   dynamics: number;
 };
 
+export type TBalanceItem = TWalletItem & { balance: number };
+
 export enum EColors {
   btc = 'rgba(234,119,54,0.7)',
   eth = 'rgba(98,70,136,0.7)',

@@ -4,6 +4,7 @@ import { ContentLayout } from '../../layouts';
 import { Balance, Pie } from '../../components';
 
 import s from './wallet.module.scss';
+import CurrencyBlock from '../../components/CurrencyBlock';
 
 function Wallet() {
   useTitle('Wallet');
@@ -11,8 +12,11 @@ function Wallet() {
   return (
     <ContentLayout title='Wallet'>
       <main className={s.wallet}>
-        <div className={s.wallet__stats}>
+        <div className={s.wallet__card}>
           <Balance />
+          <CurrencyBlock />
+        </div>
+        <div className={s.wallet__chart}>
           <Pie />
         </div>
       </main>

@@ -21,6 +21,7 @@ $input-border: rgb(200, 200, 200);
 $input-border-focused: rgb(140, 140, 140);
 $input-placeholder: rgb(150, 150, 150);
 
+$popup-overlay: rgba(0, 0, 0, 0.7);
 
 @mixin currency-icon($icon-color: $dark) {
   height: 36px;

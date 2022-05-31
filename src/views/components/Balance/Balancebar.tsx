@@ -14,9 +14,9 @@ function Balancebar() {
     value: symbol,
   }));
 
-  const { setBalance } = useActions();
+  const { setBalanceSymbol } = useActions();
 
-  const setCurrentSymbol = (symbol: TSymbol) => setBalance({ symbol });
+  const setCurrentSymbol = (symbol: TSymbol) => setBalanceSymbol({ symbol });
 
   return (
     <Radiobar<TSymbol>
