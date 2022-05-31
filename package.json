@@ -1,6 +1,7 @@
 {
   "name": "react-cryptocurrency-converter",
   "version": "0.1.0",
+  "homepage": "https://kirilldyachkovskiy.github.io/react-cryptocurrency-converter/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
@@ -12,6 +13,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "chart.js": "^3.8.0",
+    "gh-pages": "^4.0.0",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^18.1.0",
@@ -21,7 +23,8 @@
     "react-scripts": "5.0.1",
     "sass": "^1.52.1",
     "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "yarn": "^1.22.18"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -29,7 +32,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:fix": "eslint ./ --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
